@@ -20,4 +20,5 @@ class Game
       vector<vector<char>> PrepareGrid();
       bool IsRunning();
       bool IsWallAtPosition(int x, int y);
+
 };

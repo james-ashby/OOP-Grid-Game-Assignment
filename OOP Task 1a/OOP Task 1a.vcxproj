@@ -137,16 +137,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Hole.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Hole.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomNumberGenerator.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

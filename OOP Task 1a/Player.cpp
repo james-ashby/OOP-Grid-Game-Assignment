@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <vector>
 
-Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0)
+Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0), score(100)
 {
     PositionInMiddleOfGrid();
 }
@@ -76,4 +76,19 @@ void Player::PositionInMiddleOfGrid()
 {
     x = SIZE / 2;
     y = SIZE / 2;
+}
+
+int Player::getScore()
+{
+    return score.getScore();
+}
+
+void Player::AddKeyScore()
+{
+    score.Add100();
+}
+
+void Player::removeStep()
+{
+    score.Drop1();
 }

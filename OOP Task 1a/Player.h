@@ -2,6 +2,8 @@
 
 #include "constants.h"
 #include <vector>
+#include "Score.h"
+
 using namespace std;
 class Player
 {
@@ -15,8 +17,12 @@ class Player
         char GetSymbol() const;
         bool IsAtPosition(int x, int y);
         void setCurrentGrid(const vector<vector<char>>& currentGrid);
+        int getScore();
         // mutators
         void Move(int key);
+
+        void AddKeyScore();
+        void removeStep();
 
         char symbol;
         int  x, y;
@@ -26,6 +32,7 @@ class Player
         bool escaped;
         int dx;
         int dy;
+        Score score;
         vector<vector<char>> currentGrid;
         // supporting functions 
         void PositionInMiddleOfGrid();

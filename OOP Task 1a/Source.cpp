@@ -52,11 +52,11 @@ int main()
                DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY);
             }
         }
-        string score = std::to_string(game.getScore());
-        DrawText("Score = ",610, 10, 40, LIGHTGRAY);
-        Draw
+
+        DrawText(FormatText("Score = %i", game.getScore()) ,610, 10, 40, LIGHTGRAY);
 
         EndDrawing();
+
     }
 
     CloseWindow();

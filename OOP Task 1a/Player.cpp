@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <vector>
 
-Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0)
+Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0), lives(3)
 {
     PositionInMiddleOfGrid();
 }
@@ -15,7 +15,10 @@ int Player::GetY()
 {
     return y;
 }
-
+int Player::GetLives()
+{
+    return lives;
+}
 char Player::GetSymbol() const
 {
     return symbol;
@@ -29,7 +32,9 @@ void Player::setCurrentGrid(const vector<vector<char>>& currentGrid)
 {
     this->currentGrid = currentGrid;
 }
-
+void Player::removeLife() {
+    lives--;
+}
 void Player::Move(int key)
 {
     switch (key)

@@ -12,9 +12,11 @@ class Player
         // assessors
         int GetX();
         int GetY();
+        int GetLives();
         char GetSymbol() const;
         bool IsAtPosition(int x, int y);
         void setCurrentGrid(const vector<vector<char>>& currentGrid);
+        void removeLife();
         // mutators
         void Move(int key);
 
@@ -23,6 +25,7 @@ class Player
     private:
         // data members
         bool alive;
+        int lives;
         bool escaped;
         int dx;
         int dy;

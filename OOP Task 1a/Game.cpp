@@ -21,6 +21,8 @@ void Game::SetMap()
 {
     vector<vector<char>> map1;
 
+    vector<vector<char>> map2 = MAP1;
+
     RandomNumberGenerator random;
     int randomNum;
 
@@ -54,7 +56,7 @@ void Game::SetMap()
     {
         for (int y = 0; y < SIZE; y++)
         {
-            if (map1[x][y] == WALL)
+            if (map2[x][y] == WALL)
             {
                 walls.push_back(Wall(x, y));
             }

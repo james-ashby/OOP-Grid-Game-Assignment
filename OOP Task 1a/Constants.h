@@ -1,7 +1,7 @@
 #pragma once
 
 // the size of the grid
-#define SIZE      20
+#define SIZE      10
 
 // symbols used for storing where things are
 #define PLAYER    'P'
@@ -14,3 +14,18 @@
 #define KEY_LEFT  263
 #define KEY_DOWN  264
 #define KEY_UP    265
+
+#define MAP1 {\
+{\
+    { 'F','F','F','F','F','F','F','F','F','F' },\
+    { 'F','F','F','F','F','F','F','F','F','F' },\
+    { 'F','F','F','W','W','W','F','F','F','F' },\
+    { 'F','F','F','W','F','W','F','F','F','F' },\
+    { 'F','F','F','W','F','W','W','F','F','F' },\
+    { 'F','F','F','W','F','F','F','F','F','F' },\
+    { 'F','F','F','W','W','W','W','F','F','F' },\
+    { 'F','F','F','F','F','F','F','F','F','F' },\
+    { 'F','F','P','F','F','H','F','F','F','F' },\
+    { 'F','F','F','F','F','F','F','F','F','F' }\
+}\
+              }

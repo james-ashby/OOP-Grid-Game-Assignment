@@ -7,7 +7,7 @@ void Game::Setup()
     //walls.push_back(Wall(10, 9)); // == grid[9][8]
     //walls.push_back(Wall(9, 15)); // == grid[8][14]
     //walls.push_back(Wall(15, 4)); // == grid[14][3]
-
+    
     SetMap();
 }
 
@@ -60,6 +60,10 @@ void Game::SetMap()
             {
                 walls.push_back(Wall(x, y));
             }
+            if (map2[x][y] == HOLE)
+            {
+                holes.push_back(Hole(x, y));
+            }
         }
     }
 
@@ -87,11 +91,11 @@ vector<vector<char>> Game::PrepareGrid()
             {
                 line.push_back(player.GetSymbol());
             }
-            else if (IsWallAtPosition(row, col)) // Switched to row-col for correct?/easier translation to grid
+            else if (IsWallAtPosition(row, col)) // Switched to row-col for correct translation to grid
             {
                 line.push_back(WALL);
             }
-            else if (row == 6 && col == 10) // == hole at grid[5][9]
+            else if (IsHoleAtPosition(row, col)) // 
             {
                 line.push_back(HOLE);
             }
@@ -113,6 +117,18 @@ bool Game::IsWallAtPosition(int x, int y)
     for (size_t i = 0; i < walls.size(); ++i)
     {
         if (walls[i].IsAtPosition(x, y))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+bool Game::IsHoleAtPosition(int x, int y)
+{
+    for (size_t i = 0; i < holes.size(); ++i)
+    {
+        if (holes[i].IsAtPosition(x, y))
         {
             return true;
         }

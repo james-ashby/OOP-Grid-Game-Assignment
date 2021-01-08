@@ -45,6 +45,10 @@ vector<vector<char>> Game::PrepareGrid()
             {
                 line.push_back(HOLE);
             }
+            else if (row == 14 && col == 12)
+            {
+                line.push_back(KEY);
+            }
             else
             {
                 line.push_back(FLOOR);
@@ -76,4 +80,9 @@ bool Game::IsRunning()
     // depending on your game you'll need to modify this to return false
     // maybe it's when the player runs out of moves, maybe it's when they get caught, it's up to you!
     return true;
+}
+
+int Game::getScore()
+{
+    return player.getScore();
 }

@@ -59,7 +59,15 @@ void Player::Move(int key)
     if (((x + dx) >= 1) && ((x + dx) <= SIZE) && ((y + dy) >= 1) && ((y + dy) <= SIZE))
     {
         if (this->currentGrid[y + dy - 1 ][x + dx - 1] != WALL) { // Vector subscript out of range because right and down keys add to vector, reaching 20 which is out of vector bounds
-            UpdatePosition(dx, dy);
+            if(this->currentGrid[y + dy - 1][x + dx - 1] == KEY)
+            {
+                score.Add100();
+            }
+            if (!(score.getScore() <= 0))
+            {
+                UpdatePosition(dx, dy);
+                score.Drop1();
+            }
         }
     }
 
@@ -81,14 +89,4 @@ void Player::PositionInMiddleOfGrid()
 int Player::getScore()
 {
     return score.getScore();
-}
-
-void Player::AddKeyScore()
-{
-    score.Add100();
-}
-
-void Player::removeStep()
-{
-    score.Drop1();
 }

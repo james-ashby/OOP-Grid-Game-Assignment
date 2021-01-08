@@ -21,9 +21,6 @@ class Player
         // mutators
         void Move(int key);
 
-        void AddKeyScore();
-        void removeStep();
-
         char symbol;
         int  x, y;
     private:

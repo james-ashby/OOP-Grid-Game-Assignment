@@ -44,6 +44,7 @@ int main()
                     case WALL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY); break;
                     case PLAYER: DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);     break;
                     case HOLE:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLACK);     break;
+                    case KEY:    DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);      break;
                     default:     assert(false);  // if this hits you probably forgot to add your new tile type :)
                 }
 
@@ -51,6 +52,9 @@ int main()
                DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY);
             }
         }
+        string score = std::to_string(game.getScore());
+        DrawText("Score = ",610, 10, 40, LIGHTGRAY);
+        Draw
 
         EndDrawing();
     }

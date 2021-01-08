@@ -2,17 +2,65 @@
 
 void Game::Setup()
 {
-    walls.push_back(Wall(1, 1)); // 
-    walls.push_back(Wall(20, 20)); // == grid[19][19]
-    walls.push_back(Wall(10, 9)); // == grid[9][8]
-    walls.push_back(Wall(9, 15)); // == grid[8][14]
-    walls.push_back(Wall(15, 4)); // == grid[14][3]
+    //walls.push_back(Wall(1, 1)); // 
+    //walls.push_back(Wall(20, 20)); // == grid[19][19]
+    //walls.push_back(Wall(10, 9)); // == grid[9][8]
+    //walls.push_back(Wall(9, 15)); // == grid[8][14]
+    //walls.push_back(Wall(15, 4)); // == grid[14][3]
+
+    SetMap();
 }
 
 void Game::ProcessInput(int key, const vector<vector<char>>& currentGrid)
 {
     player.setCurrentGrid(currentGrid);
     player.Move(key);
+}
+
+void Game::SetMap()
+{
+    vector<vector<char>> map1;
+
+    RandomNumberGenerator random;
+    int randomNum;
+
+    for (int row = 1; row <= SIZE; ++row)
+    {
+        // create the inner vector to add to the 2D grid
+        vector<char> line;
+
+        // for each column, work out what's in that position and add the relevant char to the 2D grid
+        for (int col = 1; col <= SIZE; ++col)
+        {
+            if (row == player.GetY() && col == player.GetX())
+            {
+                line.push_back(player.GetSymbol());
+            }
+            else if (randomNum = random.GetRandomValue(10) == 1)
+            {
+                line.push_back(WALL);
+            }
+            else
+            {
+                line.push_back(FLOOR);
+            }
+        }
+
+        // now that the row is full, add it to the 2D grid
+        map1.push_back(line);
+    }
+
+    for (int x = 0; x < SIZE; x++)
+    {
+        for (int y = 0; y < SIZE; y++)
+        {
+            if (map1[x][y] == WALL)
+            {
+                walls.push_back(Wall(x, y));
+            }
+        }
+    }
+
 }
 
 /// <summary>

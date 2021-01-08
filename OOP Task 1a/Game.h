@@ -5,6 +5,7 @@
 #include <vector>
 #include "Player.h"
 #include "Wall.h"
+#include "RandomNumberGenerator.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class Game
       Player player;
       vector<Wall> walls;
       void Setup();
+      void SetMap();
       void ProcessInput(int key, const vector<vector<char>>& currentGrid);
       vector<vector<char>> PrepareGrid();
       bool IsRunning();

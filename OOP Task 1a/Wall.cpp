@@ -1,12 +1,7 @@
 #include "Wall.h"
 
-Wall::Wall()
-{
-}
 
-Wall::Wall(int x, int y)
+Wall::Wall(int x, int y) : Tile(x, y)
 {
-    symbol = WALL;
-    this->x = x;
-    this->y = y;
+    this->symbol = WALL;
 }

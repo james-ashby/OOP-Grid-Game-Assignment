@@ -26,7 +26,7 @@ int main()
         }
         else
         {
-            DrawText("TODO: Why did the game end?", 610, 10, 20, LIGHTGRAY);
+            DrawText("OUT OF LIVES", 610, 10, 20, LIGHTGRAY);
         }
         const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
 

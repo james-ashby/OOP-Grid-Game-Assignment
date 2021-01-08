@@ -91,11 +91,11 @@ vector<vector<char>> Game::PrepareGrid()
             {
                 line.push_back(player.GetSymbol());
             }
-            else if (IsWallAtPosition(row, col)) // Switched to row-col for correct translation to grid
+            else if (IsWallAtPosition(row, col)) 
             {
                 line.push_back(WALL);
             }
-            else if (IsHoleAtPosition(row, col)) // 
+            else if (IsHoleAtPosition(row, col)) 
             {
                 line.push_back(HOLE);
             }
@@ -141,5 +141,10 @@ bool Game::IsRunning()
 {
     // depending on your game you'll need to modify this to return false
     // maybe it's when the player runs out of moves, maybe it's when they get caught, it's up to you!
+    if (player.GetLives() == 0)
+    {
+        return false;
+    }
+
     return true;
 }

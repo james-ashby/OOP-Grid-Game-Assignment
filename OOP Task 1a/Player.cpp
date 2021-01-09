@@ -63,8 +63,8 @@ void Player::Move(int key)
     // update mouse coordinates if move is possible
     if (((x + dx) >= 1) && ((x + dx) <= SIZE) && ((y + dy) >= 1) && ((y + dy) <= SIZE))
     {
-        int nextY = y + dy - 1; // Had to save the next values to stop vector errors
-        int nextX = x + dx - 1;
+        int nextY = y + dy;  // Had to save the next values to stop vector errors
+        int nextX = x + dx; 
 
         if (this->currentGrid[nextY][nextX] != WALL) { // Update position if the next tile is not a wall, to avoid players walking through walls
             UpdatePosition(dx, dy);                    // Only update position here to avoid double movement

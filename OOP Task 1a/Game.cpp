@@ -79,13 +79,13 @@ vector<vector<char>> Game::PrepareGrid()
     vector<vector<char>> grid;
 
     // for each row
-    for (int row = 1; row <= SIZE; ++row)
+    for (int row = 0; row <= SIZE; ++row)
     {
         // create the inner vector to add to the 2D grid
         vector<char> line;
 
         // for each column, work out what's in that position and add the relevant char to the 2D grid
-        for (int col = 1; col <= SIZE; ++col)
+        for (int col = 0; col <= SIZE; ++col)
         {
             if (row == player.GetY() && col == player.GetX())
             {

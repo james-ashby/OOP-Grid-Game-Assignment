@@ -99,7 +99,7 @@ vector<vector<char>> Game::PrepareGrid()
             {
                 line.push_back(HOLE);
             }
-            else if (row == 14 && col == 12)
+            else if (row == 4 && col == 4)
             {
                 line.push_back(KEY);
             }

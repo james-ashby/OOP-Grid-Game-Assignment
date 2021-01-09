@@ -61,7 +61,7 @@ void Player::Move(int key)
     }
 
     // update mouse coordinates if move is possible
-    if (((x + dx) >= 1) && ((x + dx) <= SIZE) && ((y + dy) >= 1) && ((y + dy) <= SIZE))
+    if (((x + dx) >= 0) && ((x + dx) < SIZE) && ((y + dy) >= 0) && ((y + dy) < SIZE))
     {
         int nextY = y + dy;  // Had to save the next values to stop vector errors
         int nextX = x + dx; 

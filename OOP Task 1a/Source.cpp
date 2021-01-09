@@ -54,8 +54,6 @@ int main()
         }
         string score = std::to_string(game.getScore());
         DrawText("Score = ",610, 10, 40, LIGHTGRAY);
-        Draw
-
         EndDrawing();
     }
 

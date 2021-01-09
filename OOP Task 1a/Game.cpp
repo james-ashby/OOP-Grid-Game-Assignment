@@ -68,6 +68,10 @@ void Game::SetMap()
             {
                 keys.push_back(Key(x, y));
             }
+            if (map2[x][y] == DOOR)
+            {
+                doors.push_back(Door(x, y));
+            }
         }
     }
 
@@ -106,6 +110,10 @@ vector<vector<char>> Game::PrepareGrid()
             else if (IsKeyAtPosition(row, col))
             {
                 line.push_back(KEY);
+            }
+            else if(IsDoorAtPosition(row, col))
+            {
+                line.push_back(DOOR);
             }
             else
             {
@@ -156,6 +164,20 @@ bool Game::IsKeyAtPosition(int x, int y)
 
     return false;
 }
+
+bool Game::IsDoorAtPosition(int x, int y)
+{
+    for (size_t i = 0; i < doors.size(); ++i)
+    {
+        if (doors[i].IsAtPosition(x, y))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool Game::IsRunning()
 {
     // depending on your game you'll need to modify this to return false

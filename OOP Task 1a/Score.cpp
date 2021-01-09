@@ -1,7 +1,7 @@
 #include "Score.h"
 
 Score::Score(int initScore)
-    : score(initScore)
+    : score(initScore), keysHeld(0)
 {
 }
 
@@ -31,4 +31,9 @@ bool Score::IsNull()
     else {
         return false;
     }
+}
+
+void Score::addKey()
+{
+    keysHeld++;
 }

@@ -9,6 +9,7 @@
 #define WALL      'W'
 #define FLOOR     'F'
 #define KEY       'K'
+#define DOOR      'D'
 
 // the command letters to move the mouse on the maze
 #define KEY_RIGHT 262
@@ -35,7 +36,7 @@
 //20x20 map
 #define MAP2 {\
 {\
-    { 'F','K','F','W','W','F','F','F','F','F','F','F','F','F','W','F','F','F','F','F' },\
+    { 'F','K','F','W','W','F','F','F','F','D','F','F','F','F','W','F','F','F','F','F' },\
     { 'H','F','F','W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F' },\
     { 'H','F','H','W','W','W','F','F','F','H','F','F','F','F','F','F','F','F','F','W' },\
     { 'F','F','F','W','F','W','F','F','F','H','F','F','F','F','F','F','F','F','F','F' },\

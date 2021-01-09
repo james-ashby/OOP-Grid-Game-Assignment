@@ -73,10 +73,8 @@ void Player::Move(int key)
 		if (this->currentGrid[nextY][nextX] == KEY)  // TODO -- Add key to player class (vector of keys -- reset on level change
 		{
 			score.Add100();
-		}
-		if (!(score.getScore() <= 0))
-		{
-			score.Drop1();
+            score.addKey();
+            this->currentGrid[nextY][nextX] = FLOOR;
 		}
 
 		if (this->currentGrid[nextY][nextX] == HOLE) // If the player moves onto a hole, remove a life and respawn them
@@ -84,6 +82,11 @@ void Player::Move(int key)
 			removeLife();
 			PositionInMiddleOfGrid();
 		}
+
+        if (!(score.getScore() <= 0))
+        {
+            score.Drop1();
+        }
 
     }
 }

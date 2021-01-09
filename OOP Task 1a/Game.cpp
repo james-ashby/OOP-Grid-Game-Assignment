@@ -21,7 +21,7 @@ void Game::SetMap()
 {
     vector<vector<char>> map1;
 
-    vector<vector<char>> map2 = MAP1;
+    vector<vector<char>> map2 = MAP2;
 
     RandomNumberGenerator random;
     int randomNum;

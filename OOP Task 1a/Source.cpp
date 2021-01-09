@@ -26,7 +26,7 @@ int main()
         }
         else
         {
-            DrawText("OUT OF LIVES", 610, 10, 20, LIGHTGRAY);
+            DrawText("OUT OF LIVES\n GAME OVER", 610, 100, 35, RED);
         }
         const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
 
@@ -52,8 +52,8 @@ int main()
                DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY);
             }
         }
-        string score = std::to_string(game.getScore());
-        DrawText("Score = ",610, 10, 40, LIGHTGRAY);
+        DrawText(FormatText("Lives = %i", game.player.GetLives()), 610, 50, 40, LIGHTGRAY);
+        DrawText(FormatText("Score = %i", game.getScore()),610, 10, 40, LIGHTGRAY);
         EndDrawing();
     }
 

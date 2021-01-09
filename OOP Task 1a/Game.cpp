@@ -99,6 +99,10 @@ vector<vector<char>> Game::PrepareGrid()
             {
                 line.push_back(HOLE);
             }
+            else if (row == 14 && col == 12)
+            {
+                line.push_back(KEY);
+            }
             else
             {
                 line.push_back(FLOOR);
@@ -147,4 +151,9 @@ bool Game::IsRunning()
     }
 
     return true;
+}
+
+int Game::getScore()
+{
+    return player.getScore();
 }

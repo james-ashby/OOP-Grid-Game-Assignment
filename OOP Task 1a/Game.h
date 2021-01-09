@@ -22,6 +22,7 @@ class Game
       vector<vector<char>> PrepareGrid();
       bool IsRunning();
       bool IsWallAtPosition(int x, int y);
+      int getScore();
       bool IsHoleAtPosition(int x, int y);
 
 };

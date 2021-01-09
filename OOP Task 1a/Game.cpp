@@ -64,6 +64,10 @@ void Game::SetMap()
             {
                 holes.push_back(Hole(x, y));
             }
+            if (map2[x][y] == KEY)
+            {
+                keys.push_back(Key(x, y));
+            }
         }
     }
 
@@ -95,11 +99,11 @@ vector<vector<char>> Game::PrepareGrid()
             {
                 line.push_back(WALL);
             }
-            else if (IsHoleAtPosition(row, col)) 
+            else if (IsHoleAtPosition(row, col)) // TODO -- Refactor into one function that receives row,col,symbol and push_back(symbol)
             {
                 line.push_back(HOLE);
             }
-            else if (row == 4 && col == 4)
+            else if (IsKeyAtPosition(row, col))
             {
                 line.push_back(KEY);
             }
@@ -140,7 +144,18 @@ bool Game::IsHoleAtPosition(int x, int y)
 
     return false;
 }
+bool Game::IsKeyAtPosition(int x, int y)
+{
+    for (size_t i = 0; i < keys.size(); ++i)
+    {
+        if (keys[i].IsAtPosition(x, y))
+        {
+            return true;
+        }
+    }
 
+    return false;
+}
 bool Game::IsRunning()
 {
     // depending on your game you'll need to modify this to return false

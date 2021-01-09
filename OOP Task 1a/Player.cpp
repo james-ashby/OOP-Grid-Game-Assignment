@@ -70,7 +70,7 @@ void Player::Move(int key)
             UpdatePosition(dx, dy);                    // Only update position here to avoid double movement
         }
 
-		if (this->currentGrid[nextY][nextX] == KEY)  // 
+		if (this->currentGrid[nextY][nextX] == KEY)  // TODO -- Add key to player class (vector of keys -- reset on level change
 		{
 			score.Add100();
 		}

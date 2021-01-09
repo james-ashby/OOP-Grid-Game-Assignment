@@ -30,6 +30,3 @@
     { 'F','F','F','F','F','W','F','F','F','F' }\
 }\
               }
-
-// TODO : UI Grid is missing left coloumn, top row
-// TODO : UI Grid is showing extra right column, extra bottom row

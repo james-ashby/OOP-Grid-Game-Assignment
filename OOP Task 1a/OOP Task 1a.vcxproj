@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HighScoreList.cpp" />
     <ClCompile Include="Hole.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HighScoreList.h" />
     <ClInclude Include="Hole.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Player.h" />
@@ -158,6 +160,9 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Wall.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="HighScores.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

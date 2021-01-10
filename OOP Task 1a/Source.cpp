@@ -14,12 +14,17 @@ int main()
 
     Game game;
     game.Setup();
+    InitAudioDevice();              // Initialize audio device
 
+    Music music = LoadMusicStream("./assets/gamemusic.mp3");
+    bool pause = false;
+    PlayMusicStream(music);
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(DARKGRAY);
         auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // TODO: Level Changer (might require changing currentLevel to not be const)
+        UpdateMusicStream(music);
 
         if (game.IsRunning())
         {
@@ -27,6 +32,13 @@ int main()
             if (IsKeyPressed(KEY_LEFT))   game.ProcessInput(KEY_LEFT, currentLevel);
             if (IsKeyPressed(KEY_UP))     game.ProcessInput(KEY_UP, currentLevel);
             if (IsKeyPressed(KEY_DOWN))   game.ProcessInput(KEY_DOWN, currentLevel);
+            if (IsKeyPressed(KEY_P))
+            {
+                pause = !pause;
+
+                if (pause) PauseMusicStream(music);
+                else ResumeMusicStream(music);
+            }
             if (game.LevelComplete())
             {
                 
@@ -66,6 +78,8 @@ int main()
         DrawText(FormatText("Lives = %i", game.player.GetLives()), 610, 50, 40, RED);
         DrawText(FormatText("Score = %i", game.GetScore()),610, 10, 40, GOLD);
         DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 610, 90, 40, GREEN);
+        DrawText("Press P\nto pause/unpause\nmusic ", 610, 400, 30, BLACK);
+
 
         EndDrawing();
     }

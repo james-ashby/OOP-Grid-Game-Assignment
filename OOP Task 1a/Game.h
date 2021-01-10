@@ -12,7 +12,6 @@ class Game
 {
    public:
       Player player;
-      
       void Setup();
       void LoadLevel(vector<vector<char>> levelMap);
       void ProcessInput(int key, const vector<vector<char>>& currentGrid);

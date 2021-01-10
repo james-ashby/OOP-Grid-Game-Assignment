@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -9,7 +10,7 @@ using namespace std;
 class HighScoreList
 {
 private:
-    ofstream highScoreFile;
+    ifstream highScoreFile;
     string line;
     vector<int> highScores;
 

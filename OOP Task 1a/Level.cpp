@@ -11,6 +11,18 @@ bool Level::IsWallAtPosition(int x, int y)
 
     return false;
 }
+bool Level::IsDoorAtPosition(int x, int y)
+{
+    for (size_t i = 0; i < doors.size(); ++i)
+    {
+        if (doors[i].IsAtPosition(x, y))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
 void Level::AddWall(int x, int y)
 {
     walls.push_back(Wall(x, y));
@@ -22,6 +34,11 @@ void Level::AddHole(int x, int y)
 void Level::AddKey(int x, int y)
 {
     keys.push_back(Key(x, y));
+}
+void Level::AddDoor(int x, int y)
+{
+    doors.push_back(Door(x, y));
+
 }
 bool Level::IsHoleAtPosition(int x, int y)
 {

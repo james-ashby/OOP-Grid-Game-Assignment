@@ -2,5 +2,5 @@
 
 Door::Door(int x, int y) : Tile(x, y)
 {
-    this->symbol = KEY;
+    this->symbol = DOOR;
 }

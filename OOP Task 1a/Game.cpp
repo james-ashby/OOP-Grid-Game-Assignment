@@ -5,6 +5,9 @@ void Game::Setup()
 {
     LoadLevel(LEVELMAP1);
     LoadLevel(LEVELMAP2);
+    LoadLevel(LEVELMAP3);
+    LoadLevel(LEVELMAP4);
+    LoadLevel(LEVELMAP5);
 
 }
 
@@ -35,6 +38,10 @@ void Game::LoadLevel(vector<vector<char>> levelMap)
             if (map[x][y] == KEY)
             {
                 newLevel.AddKey(x, y);
+            }
+            if (map[x][y] == DOOR)
+            {
+                newLevel.AddDoor(x, y);
             }
         }
     }
@@ -75,6 +82,10 @@ vector<vector<char>> Game::PrepareGrid(Level level)
             else if (level.IsKeyAtPosition(row, col))
             {
                 line.push_back(KEY);
+            }
+            else if (level.IsDoorAtPosition(row, col))
+            {
+                line.push_back(DOOR);
             }
             else
             {

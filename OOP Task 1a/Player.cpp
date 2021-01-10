@@ -72,7 +72,6 @@ void Player::Move(int key)
 
 		if (this->currentGrid[nextY][nextX] == KEY)  // TODO -- Add key to player class (vector of keys -- reset on level change
 		{
-            this->LevelCompleted();
 			score.Add100();
             score.addKey();
             this->currentGrid[nextY][nextX] = FLOOR;
@@ -83,6 +82,10 @@ void Player::Move(int key)
 			RemoveLife();
 			MoveToSpawn();
 		}
+        if (this->currentGrid[nextY][nextX] == DOOR)
+        {
+           this->LevelCompleted();
+        }
 
         if (!(score.getScore() <= 0))
         {

@@ -134,6 +134,12 @@ void Game::ChangeLevel()
     player.MoveToSpawn();
 }
 
+void Game::LevelRemoveKey()
+{
+    levels[currentLevel].RemoveKey(player.GetY(), player.GetX());
+}
+
+
 int Game::GetScore()
 {
     return player.GetScore();

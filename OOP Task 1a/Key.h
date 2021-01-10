@@ -11,6 +11,7 @@ class Key : public Tile
 public:
     // constructors
     Key(int x, int y);
+
 private:
     // data members
     char symbol;

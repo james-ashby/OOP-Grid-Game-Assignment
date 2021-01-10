@@ -33,6 +33,11 @@ bool Score::IsNull()
     }
 }
 
+int Score::getKeysHeld()
+{
+    return keysHeld;
+}
+
 void Score::addKey()
 {
     keysHeld++;

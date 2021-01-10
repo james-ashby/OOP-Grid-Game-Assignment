@@ -7,7 +7,7 @@
 class Level
 {
 private:
-    vector<Wall> walls;   // TODO - Level class, each level has vector of walls, holes and keys
+    vector<Wall> walls;   
     vector<Hole> holes;
     vector<Key> keys;
     vector<Door> doors;
@@ -19,6 +19,7 @@ public:
     void AddWall(int x, int y);
     void AddHole(int x, int y);
     void AddKey(int x, int y);
+    void RemoveKey(int x, int y);
     void AddDoor(int x, int y);
 
 };

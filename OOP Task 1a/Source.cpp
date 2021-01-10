@@ -22,8 +22,8 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(DARKGRAY);
-        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // TODO: Level Changer (might require changing currentLevel to not be const)
+        ClearBackground(SKYBLUE);
+        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // TODO: maybe look into const currentLevel
         UpdateMusicStream(music);
 
         if (game.IsRunning())
@@ -39,9 +39,11 @@ int main()
                 if (pause) PauseMusicStream(music);
                 else ResumeMusicStream(music);
             }
+            currentLevel = game.PrepareGrid(game.CurrentLevelMap());
+            game.LevelRemoveKey();
+
             if (game.LevelComplete())
             {
-                
                 game.ChangeLevel();
                 currentLevel = game.PrepareGrid(game.CurrentLevelMap());
             }
@@ -79,6 +81,7 @@ int main()
         DrawText(FormatText("Lives = %i", game.player.GetLives()), 610, 50, 40, RED);
         DrawText(FormatText("Score = %i", game.GetScore()),610, 10, 40, GOLD);
         DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 610, 90, 40, GREEN);
+        DrawText(FormatText("Keys = %i", game.player.GetKeys()), 610, 130, 40, BLUE);
         DrawText("Press P\nto pause/unpause\nmusic ", 610, 400, 30, BLACK);
 
 

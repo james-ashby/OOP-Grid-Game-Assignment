@@ -35,6 +35,16 @@ void Level::AddKey(int x, int y)
 {
     keys.push_back(Key(x, y));
 }
+void Level::RemoveKey(int x, int y)
+{
+    for (int i = 0; i < keys.size(); i++)
+    {
+        if (keys[i].GetX() == x && keys[i].GetY() == y)
+        {
+            keys.erase(keys.begin() + i);
+        }
+    }
+}
 void Level::AddDoor(int x, int y)
 {
     doors.push_back(Door(x, y));

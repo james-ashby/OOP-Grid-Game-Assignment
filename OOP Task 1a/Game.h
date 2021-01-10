@@ -20,6 +20,7 @@ class Game
       bool LevelComplete();
       bool IsRunning();
       void ChangeLevel();
+      void LevelRemoveKey();
       int GetScore();
       int GetCurrentLevel();
 private:

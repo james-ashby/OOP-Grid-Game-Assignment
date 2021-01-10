@@ -123,6 +123,11 @@ void Player::MoveToSpawn()
     y = SIZE / 2;
 }
 
+int Player::GetKeys()
+{
+    return this->score.getKeysHeld();
+}
+
 int Player::GetScore()
 {
     return score.getScore();

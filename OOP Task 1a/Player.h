@@ -26,6 +26,7 @@ class Player
         void ResetCompleteFlag();
         void LevelCompleted();
         void MoveToSpawn();
+        int GetKeys();
         char symbol;
         int  x, y;
     private:

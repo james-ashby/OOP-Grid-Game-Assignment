@@ -74,10 +74,8 @@ void Player::Move(int key)
 		{
             this->LevelCompleted();
 			score.Add100();
-		}
-		if (!(score.getScore() <= 0))
-		{
-			score.Drop1();
+            score.addKey();
+            this->currentGrid[nextY][nextX] = FLOOR;
 		}
 
 		if (this->currentGrid[nextY][nextX] == HOLE) // If the player moves onto a hole, remove a life and respawn them
@@ -85,6 +83,11 @@ void Player::Move(int key)
 			RemoveLife();
 			MoveToSpawn();
 		}
+
+        if (!(score.getScore() <= 0))
+        {
+            score.Drop1();
+        }
 
     }
 }

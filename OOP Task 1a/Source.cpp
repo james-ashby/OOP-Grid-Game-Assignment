@@ -68,6 +68,7 @@ int main()
                     case PLAYER: DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);     break;
                     case HOLE:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLACK);     break;
                     case KEY:    DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);      break;
+                    case DOOR:    DrawRectangle(xPosition, yPosition, cellSize, cellSize, BROWN);      break;
                     default:     assert(false);  // if this hits you probably forgot to add your new tile type :)
                 }
 

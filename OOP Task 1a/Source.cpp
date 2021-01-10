@@ -6,6 +6,11 @@ int main()
     InitWindow(900, 600, "OOP Assignment 1");
     SetTargetFPS(60);
 
+    Texture2D maptiles = LoadTexture("./assets/mapTiles.png");
+
+    float frameWidth = (float)(maptiles.width / 16);
+    float frameHeight = (float)(maptiles.width / 16);
+
     Game game;
     game.Setup();
 
@@ -17,6 +22,7 @@ int main()
                                               // ^ for this we would need to make the game class include a vector/array of 2d vectors, one for each level (vector<level> levels[0]) 
                                               // Could do it using what we have, vector<vector<char>>[] / vector<vector<vector<char>>> or create a level class and use vector<level> or level[]
 
+        
         if (game.IsRunning())
         {
             if (IsKeyPressed(KEY_RIGHT))  game.ProcessInput(KEY_RIGHT, grid);
@@ -40,7 +46,8 @@ int main()
 
                 switch (grid[y][x])
                 {
-                    case FLOOR:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN); break;
+                    case FLOOR:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN);
+                                 DrawTextureRec(maptiles, Rectangle{ 0,0,frameWidth, frameHeight }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case WALL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY); break;
                     case PLAYER: DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);     break;
                     case HOLE:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLACK);     break;
@@ -54,6 +61,7 @@ int main()
         }
         DrawText(FormatText("Lives = %i", game.player.GetLives()), 610, 50, 40, LIGHTGRAY);
         DrawText(FormatText("Score = %i", game.getScore()),610, 10, 40, LIGHTGRAY);
+
         EndDrawing();
     }
 

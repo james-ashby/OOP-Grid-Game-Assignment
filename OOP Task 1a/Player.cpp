@@ -1,9 +1,9 @@
 #include "Player.h"
 #include <vector>
 
-Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0), score(100), lives(3)
+Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0), score(100), lives(3), levelComplete(false)
 {
-    PositionInMiddleOfGrid();
+    MoveToSpawn();
 }
 
 int Player::GetX()
@@ -28,11 +28,11 @@ bool Player::IsAtPosition(int x, int y)
     return this->x == x && this->y == y;
 }
 
-void Player::setCurrentGrid(const vector<vector<char>>& currentGrid)
+void Player::SetCurrentGrid(const vector<vector<char>>& currentGrid)
 {
     this->currentGrid = currentGrid;
 }
-void Player::removeLife() {
+void Player::RemoveLife() {
     lives--;
 }
 void Player::Move(int key)
@@ -72,6 +72,7 @@ void Player::Move(int key)
 
 		if (this->currentGrid[nextY][nextX] == KEY)  // TODO -- Add key to player class (vector of keys -- reset on level change
 		{
+            this->LevelCompleted();
 			score.Add100();
 		}
 		if (!(score.getScore() <= 0))
@@ -81,11 +82,26 @@ void Player::Move(int key)
 
 		if (this->currentGrid[nextY][nextX] == HOLE) // If the player moves onto a hole, remove a life and respawn them
 		{
-			removeLife();
-			PositionInMiddleOfGrid();
+			RemoveLife();
+			MoveToSpawn();
 		}
 
     }
+}
+
+bool Player::CheckComplete()
+{
+    return this->levelComplete;
+}
+
+void Player::ResetCompleteFlag()
+{
+    this->levelComplete = false;
+}
+
+void Player::LevelCompleted()
+{
+    this->levelComplete = true;
 }
 
 
@@ -95,13 +111,13 @@ void Player::UpdatePosition(int dx, int dy)
 	y += dy;
 }
 
-void Player::PositionInMiddleOfGrid()
+void Player::MoveToSpawn()
 {
     x = SIZE / 2;
     y = SIZE / 2;
 }
 
-int Player::getScore()
+int Player::GetScore()
 {
     return score.getScore();
 }

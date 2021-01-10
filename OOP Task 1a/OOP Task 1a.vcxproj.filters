@@ -9,6 +9,8 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Level.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
@@ -19,5 +21,8 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="Key.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="Source.h" />
   </ItemGroup>
 </Project>

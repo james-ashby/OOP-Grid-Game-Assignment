@@ -17,12 +17,15 @@ class Player
         int GetLives();
         char GetSymbol() const;
         bool IsAtPosition(int x, int y);
-        void setCurrentGrid(const vector<vector<char>>& currentGrid);
-        int getScore();
-        void removeLife();
+        void SetCurrentGrid(const vector<vector<char>>& currentGrid);
+        int GetScore();
+        void RemoveLife();
         // mutators
         void Move(int key);
-
+        bool CheckComplete();
+        void ResetCompleteFlag();
+        void LevelCompleted();
+        void MoveToSpawn();
         char symbol;
         int  x, y;
     private:
@@ -32,10 +35,10 @@ class Player
         bool escaped;
         int dx;
         int dy;
+        bool levelComplete;
         Score score;
         vector<vector<char>> currentGrid;
         // supporting functions 
-        void PositionInMiddleOfGrid();
         void UpdatePosition(int dx, int dy);
 
 };

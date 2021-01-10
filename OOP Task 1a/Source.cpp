@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "Game.h"
+#include "Source.h"
 
 int main()
 {
@@ -18,17 +19,20 @@ int main()
     {
         BeginDrawing();
         ClearBackground(DARKGRAY);
-        const auto grid = game.PrepareGrid(); // Can change this to currentLevel i.e current grid based on level
-                                              // ^ for this we would need to make the game class include a vector/array of 2d vectors, one for each level (vector<level> levels[0]) 
-                                              // Could do it using what we have, vector<vector<char>>[] / vector<vector<vector<char>>> or create a level class and use vector<level> or level[]
+        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // TODO: Level Changer (might require changing currentLevel to not be const)
 
-        
         if (game.IsRunning())
         {
-            if (IsKeyPressed(KEY_RIGHT))  game.ProcessInput(KEY_RIGHT, grid);
-            if (IsKeyPressed(KEY_LEFT))   game.ProcessInput(KEY_LEFT, grid);
-            if (IsKeyPressed(KEY_UP))     game.ProcessInput(KEY_UP, grid);
-            if (IsKeyPressed(KEY_DOWN))   game.ProcessInput(KEY_DOWN, grid);
+            if (IsKeyPressed(KEY_RIGHT))  game.ProcessInput(KEY_RIGHT, currentLevel);
+            if (IsKeyPressed(KEY_LEFT))   game.ProcessInput(KEY_LEFT, currentLevel);
+            if (IsKeyPressed(KEY_UP))     game.ProcessInput(KEY_UP, currentLevel);
+            if (IsKeyPressed(KEY_DOWN))   game.ProcessInput(KEY_DOWN, currentLevel);
+            if (game.LevelComplete())
+            {
+                
+                game.ChangeLevel();
+                currentLevel = game.PrepareGrid(game.CurrentLevelMap());
+            }
         }
         else
         {
@@ -44,7 +48,7 @@ int main()
                 int xPosition = x * cellSize;
                 int yPosition = y * cellSize;
 
-                switch (grid[y][x])
+                switch (currentLevel[y][x])
                 {
                     case FLOOR:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN);
                                  DrawTextureRec(maptiles, Rectangle{ 0,0,frameWidth, frameHeight }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
@@ -59,8 +63,9 @@ int main()
                DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY);
             }
         }
-        DrawText(FormatText("Lives = %i", game.player.GetLives()), 610, 50, 40, LIGHTGRAY);
-        DrawText(FormatText("Score = %i", game.getScore()),610, 10, 40, LIGHTGRAY);
+        DrawText(FormatText("Lives = %i", game.player.GetLives()), 610, 50, 40, RED);
+        DrawText(FormatText("Score = %i", game.GetScore()),610, 10, 40, GOLD);
+        DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 610, 90, 40, GREEN);
 
         EndDrawing();
     }

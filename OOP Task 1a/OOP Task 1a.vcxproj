@@ -139,6 +139,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hole.cpp" />
     <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="Score.cpp" />
@@ -151,8 +152,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Hole.h" />
     <ClInclude Include="Key.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomNumberGenerator.h" />
+    <ClInclude Include="Source.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Wall.h" />

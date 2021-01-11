@@ -23,6 +23,7 @@ class Game
       void LevelRemoveKey();
       int GetScore();
       int GetCurrentLevel();
+      int GetPlayerDirection();
 private:
     vector<Level> levels;
     int currentLevel = 0;

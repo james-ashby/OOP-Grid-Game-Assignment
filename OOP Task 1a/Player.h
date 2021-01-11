@@ -19,6 +19,7 @@ class Player
         bool IsAtPosition(int x, int y);
         void SetCurrentGrid(const vector<vector<char>>& currentGrid);
         int GetScore();
+        int GetDirection();
         void RemoveLife();
         // mutators
         void Move(int key);
@@ -26,6 +27,7 @@ class Player
         void ResetCompleteFlag();
         void LevelCompleted();
         void MoveToSpawn();
+        void ChangeDirection(int _direction);
         int GetKeys();
         char symbol;
         int  x, y;
@@ -36,6 +38,7 @@ class Player
         bool escaped;
         int dx;
         int dy;
+        int direction;
         bool levelComplete;
         Score score;
         vector<vector<char>> currentGrid;

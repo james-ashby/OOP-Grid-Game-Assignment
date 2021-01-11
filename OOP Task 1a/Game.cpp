@@ -150,3 +150,7 @@ int Game::GetCurrentLevel()
     return this->currentLevel + 1;
 }
 
+int Game::GetPlayerDirection()
+{
+    return player.GetDirection();
+}

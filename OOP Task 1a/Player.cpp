@@ -4,6 +4,7 @@
 Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0), score(100), lives(3), levelComplete(false)
 {
     MoveToSpawn();
+    direction = 3;
 }
 
 int Player::GetX()
@@ -42,18 +43,22 @@ void Player::Move(int key)
     case KEY_LEFT:
         dx = -1;
         dy = 0;
+        ChangeDirection(4);
         break;
     case KEY_RIGHT:
         dx = +1;
         dy = 0;
+        ChangeDirection(2);
         break;
     case KEY_UP:
         dx = 0;
         dy = -1;
+        ChangeDirection(1);
         break;
     case KEY_DOWN:
         dx = 0;
         dy = +1;
+        ChangeDirection(3);
         break;
     default:
         // not a key we care about, so do nothing
@@ -93,6 +98,16 @@ void Player::Move(int key)
         }
 
     }
+}
+
+void Player::ChangeDirection(int _direction)
+{
+    direction = _direction;
+}
+
+int Player::GetDirection() 
+{
+    return direction;
 }
 
 bool Player::CheckComplete()

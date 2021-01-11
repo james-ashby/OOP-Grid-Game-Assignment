@@ -4,7 +4,7 @@
 
 int main()
 {
-    InitWindow(900, 600, "OOP Assignment 1");
+    InitWindow(940, 640, "OOP Assignment 1");
     SetTargetFPS(60);
 
     Texture2D maptiles = LoadTexture("./assets/mapTiles.png");
@@ -50,9 +50,11 @@ int main()
         }
         else
         {
-            DrawText("OUT OF LIVES\n GAME OVER", 610, 100, 35, RED);
+            DrawText("OUT OF LIVES\n GAME OVER", 650, 100, 35, RED);
         }
-        const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
+
+        //const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
+        const int cellSize = 32;
 
 
         for (int x = 0; x < SIZE; x++)
@@ -78,11 +80,11 @@ int main()
                DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY);
             }
         }
-        DrawText(FormatText("Lives = %i", game.player.GetLives()), 610, 50, 40, RED);
-        DrawText(FormatText("Score = %i", game.GetScore()),610, 10, 40, GOLD);
-        DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 610, 90, 40, GREEN);
-        DrawText(FormatText("Keys = %i", game.player.GetKeys()), 610, 130, 40, BLUE);
-        DrawText("Press P\nto pause/unpause\nmusic ", 610, 400, 30, BLACK);
+        DrawText(FormatText("Lives = %i", game.player.GetLives()), 650, 50, 40, RED);
+        DrawText(FormatText("Score = %i", game.GetScore()),650, 10, 40, GOLD);
+        DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
+        DrawText(FormatText("Keys = %i", game.player.GetKeys()), 650, 130, 40, BLUE);
+        DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
 
 
         EndDrawing();

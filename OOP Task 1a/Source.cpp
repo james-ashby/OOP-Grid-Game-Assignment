@@ -22,10 +22,12 @@ int main()
 
 
     Game game;
+    int lives = game.player.GetLives();
     game.Setup();
     InitAudioDevice();              // Initialize audio device
 
     Music music = LoadMusicStream("./assets/gamemusic.mp3");
+    Sound deathSound = LoadSound("./assets/DeathNoise.mp3");
     bool pause = false;
     PlayMusicStream(music);
     while (!WindowShouldClose())
@@ -47,6 +49,11 @@ int main()
 
                 if (pause) PauseMusicStream(music);
                 else ResumeMusicStream(music);
+            }
+            if (game.player.GetLives() < lives)
+            {
+                lives--;
+                PlaySound(deathSound);
             }
             currentLevel = game.PrepareGrid(game.CurrentLevelMap());
             game.LevelRemoveKey();
@@ -109,7 +116,6 @@ int main()
         DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
         DrawText(FormatText("Keys = %i", game.player.GetKeys()), 650, 130, 40, BLUE);
         DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
-
 
         EndDrawing();
     }

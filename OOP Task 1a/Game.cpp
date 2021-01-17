@@ -140,8 +140,11 @@ bool Game::IsRunning()
     {
         return false;
     }
+    else
+    {
+        return this->HasStarted();
 
-    return true;
+    }
 }
 
 void Game::ChangeLevel()
@@ -168,4 +171,14 @@ int Game::GetCurrentLevel()
 int Game::GetPlayerDirection()
 {
     return player.GetDirection();
+}
+
+bool Game::HasStarted()
+{
+    return started;
+}
+
+void Game::StartGame()
+{
+    this->started = true;
 }

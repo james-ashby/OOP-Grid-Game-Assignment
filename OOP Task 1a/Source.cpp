@@ -35,10 +35,16 @@ int main()
         BeginDrawing();
         ClearBackground(SKYBLUE);
         auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // TODO: maybe look into const currentLevel
-        UpdateMusicStream(music);
-
+        DrawText("Press Spacebar to Begin!", 80, 350, 60, ORANGE); // TODO: work out how to get this goddamn text to remove on start
+        if (IsKeyPressed(KEY_SPACE))
+        {
+            game.StartGame();
+            EndDrawing();
+        }
         if (game.IsRunning())
         {
+
+            UpdateMusicStream(music);
             if (IsKeyPressed(KEY_RIGHT))  game.ProcessInput(KEY_RIGHT, currentLevel);
             if (IsKeyPressed(KEY_LEFT))   game.ProcessInput(KEY_LEFT, currentLevel);
             if (IsKeyPressed(KEY_UP))     game.ProcessInput(KEY_UP, currentLevel);
@@ -63,62 +69,63 @@ int main()
                 game.ChangeLevel();
                 currentLevel = game.PrepareGrid(game.CurrentLevelMap());
             }
-        }
-        else
-        {
-            DrawText("OUT OF LIVES\n GAME OVER", 650, 300, 35, RED);
-        }
-
-        //const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
+            //const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
         //set size to 32 as it fits the sprites better.
-        const int cellSize = 32;
+            const int cellSize = 32;
 
 
-        for (int x = 0; x < SIZE; x++)
-        {
-            for (int y = 0; y < SIZE; y++)
+            for (int x = 0; x < SIZE; x++)
             {
-                int xPosition = x * cellSize;
-                int yPosition = y * cellSize;
-
-                switch (currentLevel[y][x])
+                for (int y = 0; y < SIZE; y++)
                 {
+                    int xPosition = x * cellSize;
+                    int yPosition = y * cellSize;
+
+                    switch (currentLevel[y][x])
+                    {
                     case FLOOR:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN);
-                                 DrawTextureRec(floorTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case WALL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY); 
-                                 DrawTextureRec(wallTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case PLAYER: DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);     
-                                    if (game.GetPlayerDirection() == 1) { DrawTextureRec(playerFront, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                                    else if (game.GetPlayerDirection() == 2) { DrawTextureRec(playerRight, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                                    else if (game.GetPlayerDirection() == 3) { DrawTextureRec(playerBack, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                                    else { DrawTextureRec(playerLeft, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                                 break;
+                        DrawTextureRec(floorTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                    case WALL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY);
+                        DrawTextureRec(wallTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                    case PLAYER: DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
+                        if (game.GetPlayerDirection() == 1) { DrawTextureRec(playerFront, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
+                        else if (game.GetPlayerDirection() == 2) { DrawTextureRec(playerRight, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
+                        else if (game.GetPlayerDirection() == 3) { DrawTextureRec(playerBack, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
+                        else { DrawTextureRec(playerLeft, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
+                        break;
                     case HOLE:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLACK);
-                                 DrawTextureRec(holeTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                        DrawTextureRec(holeTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case KEY:    DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);
-                                 DrawTextureRec(keyTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                        DrawTextureRec(keyTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case DOOR:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
-                                    //this is a temp fix, i think it can be done better.
-                                    if (game.player.GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                                    else{ DrawTextureRec(doorOpenTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                                 break;
+                        //this is a temp fix, i think it can be done better.
+                        if (game.player.GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
+                        else { DrawTextureRec(doorOpenTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
+                        break;
                     case SPIKE:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED); break; //TODO Spike tile
                     case SPIKEDOWN:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLUE); break; //TODO Spike tile
 
                     default:     assert(false);  // if this hits you probably forgot to add your new tile type :)
-                }
+                    }
 
-                // draw lines around each tile, remove this if you don't like it!
-               //DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY); Disabled it for now to test how textures will look.
+                    // draw lines around each tile, remove this if you don't like it!
+                   //DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY); Disabled it for now to test how textures will look.
+                }
+            }
+            DrawText(FormatText("Lives = %i", game.player.GetLives()), 650, 50, 40, RED);
+            //can add heart sprites here if we want to.
+            DrawText(FormatText("Score = %i", game.GetScore()), 650, 10, 40, GOLD);
+            DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
+            DrawText(FormatText("Keys = %i", game.player.GetKeys()), 650, 130, 40, BLUE);
+            DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
+        }
+        else
+        {
+            if (game.player.GetLives() == 0)
+            {
+                DrawText("OUT OF LIVES\n GAME OVER", 650, 300, 35, RED);
             }
         }
-        DrawText(FormatText("Lives = %i", game.player.GetLives()), 650, 50, 40, RED);
-        //can add heart sprites here if we want to.
-        DrawText(FormatText("Score = %i", game.GetScore()),650, 10, 40, GOLD);
-        DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
-        DrawText(FormatText("Keys = %i", game.player.GetKeys()), 650, 130, 40, BLUE);
-        DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
-
         EndDrawing();
     }
 

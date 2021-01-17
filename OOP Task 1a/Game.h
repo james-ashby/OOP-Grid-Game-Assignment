@@ -24,8 +24,10 @@ class Game
       int GetScore();
       int GetCurrentLevel();
       int GetPlayerDirection();
+      bool HasStarted();
+      void StartGame();
 private:
     vector<Level> levels;
     int currentLevel = 0;
-
+    bool started = false;
 };

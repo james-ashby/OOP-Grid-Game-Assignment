@@ -23,6 +23,18 @@ bool Level::IsDoorAtPosition(int x, int y)
 
     return false;
 }
+bool Level::IsSpikeAtPosition(int x, int y)
+{
+    for (size_t i = 0; i < spikes.size(); ++i)
+    {
+        if (spikes[i].IsAtPosition(x, y))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
 void Level::AddWall(int x, int y)
 {
     walls.push_back(Wall(x, y));
@@ -34,6 +46,10 @@ void Level::AddHole(int x, int y)
 void Level::AddKey(int x, int y)
 {
     keys.push_back(Key(x, y));
+}
+void Level::AddSpike(int x, int y)
+{
+    spikes.push_back(Spike(x, y));
 }
 void Level::RemoveKey(int x, int y)
 {
@@ -49,6 +65,14 @@ void Level::AddDoor(int x, int y)
 {
     doors.push_back(Door(x, y));
 
+}
+void Level::ToggleSpikes()
+{
+    spikesActive = !spikesActive;
+}
+bool Level::SpikesActive()
+{
+    return spikesActive;
 }
 bool Level::IsHoleAtPosition(int x, int y)
 {

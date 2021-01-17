@@ -146,6 +146,7 @@
     <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Spike.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
@@ -160,6 +161,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="Source.h" />
+    <ClInclude Include="Spike.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Wall.h" />

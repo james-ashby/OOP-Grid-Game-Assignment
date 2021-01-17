@@ -11,6 +11,9 @@
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Door.cpp" />
+    <ClCompile Include="HighScoreList.cpp" />
+    <ClCompile Include="Spike.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
@@ -24,5 +27,11 @@
     <ClInclude Include="Key.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Source.h" />
+    <ClInclude Include="Door.h" />
+    <ClInclude Include="HighScoreList.h" />
+    <ClInclude Include="Spike.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="HighScores.txt" />
   </ItemGroup>
 </Project>

@@ -13,6 +13,7 @@ void Game::Setup()
 
 void Game::ProcessInput(int key, const vector<vector<char>>& currentGrid)
 {
+    levels[currentLevel].ToggleSpikes(); // Better to do this with a timer
     player.SetCurrentGrid(currentGrid);
     player.Move(key);
 }
@@ -42,6 +43,10 @@ void Game::LoadLevel(vector<vector<char>> levelMap)
             if (map[x][y] == DOOR)
             {
                 newLevel.AddDoor(x, y);
+            }
+            if (map[x][y] == SPIKE)
+            {
+                newLevel.AddSpike(x, y);
             }
         }
     }
@@ -86,6 +91,17 @@ vector<vector<char>> Game::PrepareGrid(Level level)
             else if (level.IsDoorAtPosition(row, col))
             {
                 line.push_back(DOOR);
+            }
+            else if (level.IsSpikeAtPosition(row, col))
+            {
+                if (level.SpikesActive())
+                {
+                    line.push_back(SPIKE);
+                }
+                else
+                {
+                    line.push_back(SPIKEDOWN); // TODO Change FLOOR to SPIKE DOWN tile
+                }
             }
             else
             {
@@ -138,7 +154,6 @@ void Game::LevelRemoveKey()
 {
     levels[currentLevel].RemoveKey(player.GetY(), player.GetX());
 }
-
 
 int Game::GetScore()
 {

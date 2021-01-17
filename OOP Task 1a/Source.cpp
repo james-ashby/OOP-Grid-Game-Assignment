@@ -102,6 +102,8 @@ int main()
                                     if (game.player.GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                                     else{ DrawTextureRec(doorOpenTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                                  break;
+                    case SPIKE:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED); break; //TODO Spike tile
+                    case SPIKEDOWN:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLUE); break; //TODO Spike tile
 
                     default:     assert(false);  // if this hits you probably forgot to add your new tile type :)
                 }

@@ -10,7 +10,8 @@
 #define FLOOR     'F'
 #define KEY       'K'
 #define DOOR      'D'
-
+#define SPIKE   'S'
+#define SPIKEDOWN 'X'
 // the command letters to move the mouse on the maze
 #define KEY_RIGHT 262
 #define KEY_LEFT  263
@@ -42,10 +43,10 @@
     { 'H','F','H','W','W','W','F','F','F','H','F','F','F','F','F','F','F','F','F','W' },\
     { 'F','F','F','W','F','W','F','F','F','H','F','F','F','F','F','F','F','F','F','F' },\
     { 'W','H','F','W','F','W','W','F','F','F','W','F','F','F','F','F','F','F','F','F' },\
-    { 'F','F','F','W','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F' },\
-    { 'F','F','F','W','W','W','W','F','F','F','F','F','F','F','F','F','F','F','F','F' },\
-    { 'F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F' },\
-    { 'F','F','P','F','F','F','F','F','F','F','F','F','P','F','F','F','F','F','F','F' },\
+    { 'F','F','F','W','F','F','F','F','F','F','S','F','F','F','F','F','F','F','F','F' },\
+    { 'F','F','F','W','W','W','W','F','F','F','S','F','F','F','F','F','F','F','F','F' },\
+    { 'F','F','F','F','F','F','F','F','F','F','S','F','F','F','F','F','F','F','F','F' },\
+    { 'F','F','P','F','F','F','F','F','F','F','S','F','P','F','F','F','F','F','F','F' },\
     { 'F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','W','F','F','F','W' },\
     { 'F','F','F','F','F','F','F','F','F','F','F','F','F','F','W','F','F','F','F','F' },\
     { 'F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F','F' },\

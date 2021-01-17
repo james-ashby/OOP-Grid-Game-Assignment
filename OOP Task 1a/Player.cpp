@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <vector>
 
-Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0), score(100), lives(3), levelComplete(false)
+Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0), score(100), lives(3), levelComplete(false), currentLevel(1)
 {
     MoveToSpawn();
     direction = 3;
@@ -71,7 +71,7 @@ void Player::Move(int key)
         int nextY = y + dy;  // Had to save the next values to stop vector errors
         int nextX = x + dx; 
 
-        if (this->currentGrid[nextY][nextX] != WALL) { // Update position if the next tile is not a wall, to avoid players walking through walls
+        if (this->currentGrid[nextY][nextX] != WALL && this->currentGrid[nextY][nextX] != DOOR) { // Update position if the next tile is not a wall, to avoid players walking through walls
             UpdatePosition(dx, dy);                    // Only update position here to avoid double movement
         }
 
@@ -87,7 +87,7 @@ void Player::Move(int key)
 			RemoveLife();
 			MoveToSpawn();
 		}
-        if (this->currentGrid[nextY][nextX] == DOOR)
+        if (this->currentGrid[nextY][nextX] == DOOR && this->GetKeys() == this->currentLevel) // Band-aid door fix for now, can refactor later if necessary
         {
            this->LevelCompleted();
         }
@@ -122,6 +122,7 @@ void Player::ResetCompleteFlag()
 
 void Player::LevelCompleted()
 {
+    currentLevel++;
     this->levelComplete = true;
 }
 

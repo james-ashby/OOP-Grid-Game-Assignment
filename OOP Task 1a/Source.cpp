@@ -66,7 +66,7 @@ int main()
         }
         else
         {
-            DrawText("OUT OF LIVES\n GAME OVER", 650, 100, 35, RED);
+            DrawText("OUT OF LIVES\n GAME OVER", 650, 300, 35, RED);
         }
 
         //const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));

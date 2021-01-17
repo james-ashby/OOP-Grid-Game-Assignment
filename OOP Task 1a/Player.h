@@ -40,6 +40,7 @@ class Player
         int dy;
         int direction;
         bool levelComplete;
+        int currentLevel;
         Score score;
         vector<vector<char>> currentGrid;
         // supporting functions 

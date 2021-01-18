@@ -6,12 +6,15 @@
 #include "Player.h"
 #include "RandomNumberGenerator.h"
 #include "Level.h"
+#include "HighScoreList.h"
+
 using namespace std;
 
 class Game
 {
    public:
       Player player;
+      HighScoreList highScoreList;
       void Setup();
       void LoadLevel(vector<vector<char>> levelMap);
       void ProcessInput(int key, const vector<vector<char>>& currentGrid);

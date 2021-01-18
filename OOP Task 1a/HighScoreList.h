@@ -10,12 +10,18 @@ using namespace std;
 class HighScoreList
 {
 private:
-    ifstream highScoreFile;
+    ifstream ifhighScoreFile;
+    ofstream ofhighScoreFile;
     string line;
-    vector<int> highScores;
+    vector<pair<string, int>> highScores;
+    string name;
+    int score;
+    void sortList();
+
 
 public:
     HighScoreList();
-    vector<int> GetHighScoreList();
+    vector<pair<string, int>> GetHighScoreList();
+    void AddToHighScoreList(string name, int score);
 };
 

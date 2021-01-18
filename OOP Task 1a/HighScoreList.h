@@ -16,7 +16,8 @@ private:
     vector<pair<string, int>> highScores;
     string name;
     int score;
-    void sortList();
+    vector<pair<string, int>> quickSort(vector<pair<string, int>> A, int p, int q);
+    int partition(vector<pair<string, int>> A, int p, int q);
 
 
 public:

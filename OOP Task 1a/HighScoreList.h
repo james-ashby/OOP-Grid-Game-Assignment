@@ -9,9 +9,11 @@ using namespace std;
 class HighScoreList
 {
 private:
-    ofstream highScoreFile;
+    ifstream highScoreFile;
     string line;
-    vector<int> highScores;
+    vector<string, int> highScores;
+    int score;
+    string name;
 
 public:
     HighScoreList();

@@ -30,7 +30,7 @@ int HighScoreList::partition(vector<pair<string, int>>& A, int p, int q)
         }
     }
 
-    swap(A[i], A[j]);
+    swap(A[i], A[p]);
     return i;
 }
 
@@ -52,7 +52,7 @@ const vector<pair<string, int>>& HighScoreList::GetHighScoreList()
     {
 
     }
-    quickSort(highScores, 0, highScores.size() - 1);
+    quickSort(highScores, 0, highScores.size());
     return highScores;
 }
 

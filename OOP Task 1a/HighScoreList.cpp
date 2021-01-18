@@ -4,7 +4,7 @@ HighScoreList::HighScoreList()
 {
 }
 
-vector<pair<string, int>> HighScoreList::quickSort(vector<pair<string, int>> A, int p, int q)
+void HighScoreList::quickSort(vector<pair<string, int>>& A, int p, int q)
 {
     int r;
     if (p < q)
@@ -15,7 +15,7 @@ vector<pair<string, int>> HighScoreList::quickSort(vector<pair<string, int>> A, 
     }
 }
 
-int HighScoreList::partition(vector<pair<string, int>> A, int p, int q)
+int HighScoreList::partition(vector<pair<string, int>>& A, int p, int q)
 {
     int x = A[p].second;
     int i = p;
@@ -34,7 +34,7 @@ int HighScoreList::partition(vector<pair<string, int>> A, int p, int q)
     return i;
 }
 
-vector<pair<string, int>> HighScoreList::GetHighScoreList()
+const vector<pair<string, int>>& HighScoreList::GetHighScoreList()
 {
     
     ifhighScoreFile.open("HighScores.txt");
@@ -52,7 +52,8 @@ vector<pair<string, int>> HighScoreList::GetHighScoreList()
     {
 
     }
-    return quickSort(highScores, 0, highScores.size() - 1);
+    quickSort(highScores, 0, highScores.size() - 1);
+    return highScores;
 }
 
 void HighScoreList::AddToHighScoreList(string newName, int newScore)

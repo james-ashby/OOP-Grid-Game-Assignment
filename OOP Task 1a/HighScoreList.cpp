@@ -1,13 +1,12 @@
 #include "HighScoreList.h"
 
-
 HighScoreList::HighScoreList()
 {
 }
 
 vector<int> HighScoreList::GetHighScoreList()
 {
-
+    
     highScoreFile.open("HighScores.txt");
     if (highScoreFile.is_open())
     {

@@ -16,12 +16,13 @@ private:
     vector<pair<string, int>> highScores;
     string name;
     int score;
-    void sortList();
+    void quickSort(vector<pair<string, int>>& A, int p, int q);
+    int partition(vector<pair<string, int>>& A, int p, int q);
 
 
 public:
     HighScoreList();
-    vector<pair<string, int>> GetHighScoreList();
+    const vector<pair<string, int>>& GetHighScoreList();
     void AddToHighScoreList(string name, int score);
 };
 

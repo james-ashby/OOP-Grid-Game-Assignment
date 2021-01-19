@@ -9,7 +9,6 @@ void Game::Setup()
     LoadLevel(LEVELMAP4);
     LoadLevel(LEVELMAP5);
     highScoreList.GetHighScoreList();
-    highScoreList.AddToHighScoreList("DDDD", 5555);
 
 }
 

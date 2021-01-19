@@ -27,6 +27,7 @@ int main()
 
     Game game;
     int lives = game.player.GetLives();
+    vector<pair<string, int>> HighScores = move(game.highScoreList.GetHighScoreList());
     game.Setup();
     InitAudioDevice();              // Initialize audio device
 
@@ -138,6 +139,14 @@ int main()
             DrawText(FormatText("Score = %i", game.GetScore()), 650, 10, 40, GOLD);
             DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
             DrawText(FormatText("Keys = %i", game.player.GetKeys()), 650, 130, 40, BLUE);
+            DrawText(FormatText("HighScores:"), 650, 170, 40, BLACK);
+            int i = 0;
+            for (auto &Scores : HighScores)
+            {
+                i++;
+                int listPosition = 170 + (30 * (i + 1));
+                DrawText(FormatText(": %s, %i", Scores.first.c_str(), Scores.second), 650, listPosition, 30, BLACK);
+            }
             DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
         }
         else

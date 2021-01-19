@@ -5,7 +5,7 @@
 int main()
 {
     Image icon = LoadImage("./assets/yodaIcon.png");
-    InitWindow(940, 640, "[GAME NAME]");
+    InitWindow(940, 640, "BABA YADA");
     SetWindowIcon(icon);
     SetTargetFPS(60);
 

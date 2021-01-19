@@ -59,7 +59,7 @@ int main()
             UpdateMusicStream(levelMusic);
             PlayMusicStream(levelMusic);
 
-            if (IsKeyPressed(KEY_RIGHT)) { PlaySound(footstepAltSound); game.ProcessInput(KEY_RIGHT, currentLevel); }
+            if (IsKeyPressed(KEY_RIGHT)) { PlaySound(keyPickUpSound); game.ProcessInput(KEY_RIGHT, currentLevel); }
             if (IsKeyPressed(KEY_LEFT)) { PlaySound(footstepSound); game.ProcessInput(KEY_LEFT, currentLevel);
         }
             if (IsKeyPressed(KEY_UP)) { PlaySound(footstepAltSound); game.ProcessInput(KEY_UP, currentLevel); }

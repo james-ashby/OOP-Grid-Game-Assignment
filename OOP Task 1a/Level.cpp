@@ -35,6 +35,17 @@ bool Level::IsSpikeAtPosition(int x, int y)
 
     return false;
 }
+bool Level::IsWaterAtPosition(int x, int y)
+{
+    for (size_t i = 0; i < waters.size(); ++i)
+    {
+        if (waters[i].IsAtPosition(x, y))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 void Level::AddWall(int x, int y)
 {
     walls.push_back(Wall(x, y));
@@ -47,10 +58,15 @@ void Level::AddKey(int x, int y)
 {
     keys.push_back(Key(x, y));
 }
-void Level::AddSpike(int x, int y)
+void Level::AddWater(int x, int y)
 {
-    spikes.push_back(Spike(x, y));
+    waters.push_back(Water(x, y));
 }
+void Level::AddSpike(int x, int y, char active)
+{
+    spikes.push_back(Spike(x, y, active));
+}
+
 void Level::RemoveKey(int x, int y)
 {
     for (int i = 0; i < keys.size(); i++)

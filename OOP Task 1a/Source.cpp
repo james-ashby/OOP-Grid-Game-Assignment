@@ -5,7 +5,7 @@
 int main()
 {
     Image icon = LoadImage("./assets/yodaIcon.png");
-    InitWindow(940, 640, "[GAME NAME]");
+    InitWindow(940, 640, "BABA YADA");
     SetWindowIcon(icon);
     SetTargetFPS(60);
 
@@ -32,8 +32,11 @@ int main()
     InitAudioDevice();              // Initialize audio device
 
     Music menuMusic = LoadMusicStream("./assets/gamemusic.mp3");
+    Music gameOverMusic = LoadMusicStream("./assets/gameoverMusic.mp3");
     Music levelMusic = LoadMusicStream("./assets/levelMusic.mp3");
     Sound deathSound = LoadSound("./assets/DeathNoise.mp3");
+    Sound gameOverSound = LoadSound("./assets/gameoversound.mp3");
+
     Sound footstepSound = LoadSound("./assets/footstep01.ogg");
     Sound footstepAltSound = LoadSound("./assets/footstep08.ogg");
     Sound keyPickUpSound = LoadSound("./assets/keypickup.ogg");
@@ -42,12 +45,12 @@ int main()
     PlayMusicStream(menuMusic);
     while (!WindowShouldClose())
     {
-        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // TODO: maybe look into const currentLevel
+        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap());
         while (!game.IsRunning())
         {
             UpdateMusicStream(menuMusic);
             ClearBackground(SKYBLUE);
-            DrawText("Press Spacebar to Begin!", 80, 350, 60, ORANGE); // TODO: work out how to get this goddamn text to remove on start
+            DrawText("Press Spacebar to Begin!", 80, 350, 60, ORANGE); 
             EndDrawing();
             if (IsKeyPressed(KEY_SPACE))
             {
@@ -149,14 +152,23 @@ int main()
             }
             DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
         }
-        else
+        EndDrawing();
+        while (!game.IsRunning() && game.player.GetLives() == 0)
         {
-            if (game.player.GetLives() == 0)
+            
+            PlaySound(gameOverSound);
+            UpdateMusicStream(gameOverMusic);
+            PlayMusicStream(gameOverMusic);
+            ClearBackground(BLACK);
+            DrawText("GAME OVER", 130, 250, 120, RED);
+            EndDrawing();
+            if (IsKeyPressed(KEY_F))
             {
-                DrawText("OUT OF LIVES\n GAME OVER", 650, 300, 35, RED);
+                StopMusicStream(gameOverMusic);
+                EndDrawing();
+                CloseWindow();
             }
         }
-        EndDrawing();
     }
 
     CloseWindow();

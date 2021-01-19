@@ -17,10 +17,10 @@ int main()
     Texture2D holeTile = LoadTexture("./assets/hole.png"); //yes i did use the hole emoji
     Texture2D doorClosedTile = LoadTexture("./assets/doorClosed.png");
     Texture2D doorOpenTile = LoadTexture("./assets/doorOpen.png");
-    Texture2D playerFront = LoadTexture("./assets/playerBack.png");
-    Texture2D playerRight = LoadTexture("./assets/playerRight.png");
-    Texture2D playerBack = LoadTexture("./assets/playerFront.png"); //remind me to change the names
-    Texture2D playerLeft = LoadTexture("./assets/playerLeft.png");
+    Texture2D playerFront = LoadTexture("./assets/YodaBack.png");
+    Texture2D playerRight = LoadTexture("./assets/YodaRight.png");
+    Texture2D playerBack = LoadTexture("./assets/YodaFront.png"); //remind me to change the names
+    Texture2D playerLeft = LoadTexture("./assets/YodaLeft.png");
     
 
     Game game;

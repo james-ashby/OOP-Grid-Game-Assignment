@@ -12,6 +12,8 @@ int main()
     Texture2D wallTile = LoadTexture("./assets/wall.png");
     Texture2D waterTile = LoadTexture("./assets/water.png");
     Texture2D keyTile = LoadTexture("./assets/key2.png");
+    Texture2D spikeUp = LoadTexture("./assets/spikeUp.png");
+    Texture2D spikeDown = LoadTexture("./assets/spikeDown.png");
     Texture2D holeTile = LoadTexture("./assets/hole.png"); //yes i did use the hole emoji
     Texture2D doorClosedTile = LoadTexture("./assets/doorClosed.png");
     Texture2D doorOpenTile = LoadTexture("./assets/doorOpen.png");
@@ -84,7 +86,7 @@ int main()
                 currentLevel = game.PrepareGrid(game.CurrentLevelMap());
             }
             //const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
-        //set size to 32 as it fits the sprites better.
+            //set size to 32 as it fits the sprites better.
             const int cellSize = 32;
 
 
@@ -118,8 +120,10 @@ int main()
                         if (game.player.GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         else { DrawTextureRec(doorOpenTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         break;
-                    case SPIKE:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED); break; //TODO Spike tile
-                    case SPIKEDOWN:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLUE); break; //TODO Spike tile
+                    case SPIKE:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED);
+                                 DrawTextureRec(spikeUp, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                    case SPIKEDOWN:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLUE); 
+                                     DrawTextureRec(spikeDown, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
 
                     default:     assert(false);  // if this hits you probably forgot to add your new tile type :)
                     }

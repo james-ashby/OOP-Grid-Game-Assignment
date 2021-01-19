@@ -1,6 +1,6 @@
 #include "Spike.h"
 
-Spike::Spike(int x, int y, char active) : Tile(x, y)
+Spike::Spike(int x, int y, char active) : Tile(x, y, active)
 {
 	if (active == SPIKE)
 	{

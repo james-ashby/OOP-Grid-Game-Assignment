@@ -109,13 +109,24 @@ vector<vector<char>> Game::PrepareGrid(Level level)
             }
             else if (level.IsSpikeAtPosition(row, col))
             {
-                if (level.SpikesActive())
+                for each (Spike spike in level.GetSpikes())
                 {
-                    line.push_back(SPIKE);
-                }
-                else
-                {
-                    line.push_back(SPIKEDOWN); // TODO Change FLOOR to SPIKE DOWN tile
+                    if (spike.GetX() == row && spike.GetY() == col)
+                    {
+                        if (level.SpikesActive() && spike.GetSymbol() == SPIKE)
+                        {
+                            line.push_back(SPIKEDOWN);
+
+                        }
+                        else if (level.SpikesActive() && spike.GetSymbol() == SPIKEDOWN)
+                        {
+                            line.push_back(SPIKE);
+                        }
+                        else
+                        {
+                            line.push_back(spike.GetSymbol());
+                        }
+                    }
                 }
             }
             else

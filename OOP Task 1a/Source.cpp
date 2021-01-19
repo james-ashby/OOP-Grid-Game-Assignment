@@ -4,7 +4,7 @@
 
 int main()
 {
-    InitWindow(940, 640, "[GAME NAME]");
+    InitWindow(940, 640, "BABA YADA");
     SetTargetFPS(60);
 
     //lots of textures consider a diferent way to load? or something not sure if it's possible other than a sprite sheet.

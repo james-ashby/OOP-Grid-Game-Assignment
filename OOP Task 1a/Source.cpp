@@ -23,7 +23,6 @@ int main()
     Texture2D playerLeft = LoadTexture("./assets/playerLeft.png");
     
 
-
     Game game;
     int lives = game.player.GetLives();
     game.Setup();

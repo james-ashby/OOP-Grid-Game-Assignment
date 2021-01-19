@@ -41,12 +41,12 @@ int main()
     PlayMusicStream(menuMusic);
     while (!WindowShouldClose())
     {
-        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // TODO: maybe look into const currentLevel
+        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap());
         while (!game.IsRunning())
         {
             UpdateMusicStream(menuMusic);
             ClearBackground(SKYBLUE);
-            DrawText("Press Spacebar to Begin!", 80, 350, 60, ORANGE); // TODO: work out how to get this goddamn text to remove on start
+            DrawText("Press Spacebar to Begin!", 80, 350, 60, ORANGE); 
             EndDrawing();
             if (IsKeyPressed(KEY_SPACE))
             {

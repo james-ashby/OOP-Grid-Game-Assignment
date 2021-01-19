@@ -71,7 +71,7 @@ void Player::Move(int key)
         int nextY = y + dy;  // Had to save the next values to stop vector errors
         int nextX = x + dx; 
 
-        if (this->currentGrid[nextY][nextX] != WALL && this->currentGrid[nextY][nextX] != DOOR) { // Update position if the next tile is not a wall, to avoid players walking through walls
+        if (this->currentGrid[nextY][nextX] != WALL && this->currentGrid[nextY][nextX] != DOOR && this->currentGrid[nextY][nextX] != OCEAN) { // Update position if the next tile is not a wall, to avoid players walking through walls
             UpdatePosition(dx, dy);                    // Only update position here to avoid double movement
         }
 

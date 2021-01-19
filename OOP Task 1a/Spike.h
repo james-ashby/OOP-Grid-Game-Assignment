@@ -8,7 +8,7 @@ class Spike : public Tile
 {
 public:
     // constructors
-    Spike(int x, int y);
+    Spike(int x, int y, char active);
 
 private:
     // data members

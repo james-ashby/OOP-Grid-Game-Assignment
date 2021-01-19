@@ -49,7 +49,15 @@ void Game::LoadLevel(vector<vector<char>> levelMap)
             }
             if (map[x][y] == SPIKE)
             {
-                newLevel.AddSpike(x, y);
+                newLevel.AddSpike(x, y, SPIKE);
+            }
+            if (map[x][y] == SPIKEDOWN)
+            {
+                newLevel.AddSpike(x, y, SPIKEDOWN);
+            }
+            if (map[x][y] == OCEAN)
+            {
+                newLevel.AddWater(x, y);
             }
         }
     }
@@ -94,6 +102,10 @@ vector<vector<char>> Game::PrepareGrid(Level level)
             else if (level.IsDoorAtPosition(row, col))
             {
                 line.push_back(DOOR);
+            }
+            else if (level.IsWaterAtPosition(row, col))
+            {
+                line.push_back(OCEAN);
             }
             else if (level.IsSpikeAtPosition(row, col))
             {

@@ -77,6 +77,10 @@ void Level::RemoveKey(int x, int y)
         }
     }
 }
+vector<Spike> Level::GetSpikes()
+{
+    return spikes;
+}
 void Level::AddDoor(int x, int y)
 {
     doors.push_back(Door(x, y));

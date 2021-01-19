@@ -29,6 +29,7 @@ public:
     void AddWater(int x, int y);
     void AddSpike(int x, int y, char active);
     void RemoveKey(int x, int y);
+    vector<Spike> GetSpikes();
     void AddDoor(int x, int y);
     void ToggleSpikes();
     bool SpikesActive();

@@ -8,9 +8,13 @@ public:
     {
 
     };
+    Tile::Tile(int x, int y, char symbol) : x(x), y(y), symbol(symbol)
+    {
+
+    };
     int GetX();
     int GetY();
-    char GetSymbol() const;
+    char GetSymbol();
     bool IsAtPosition(int x, int y);
 private:
     // data members

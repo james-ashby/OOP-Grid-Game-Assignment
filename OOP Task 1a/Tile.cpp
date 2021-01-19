@@ -10,7 +10,7 @@ int Tile::GetY()
     return y;
 }
 
-char Tile::GetSymbol() const
+char Tile::GetSymbol()
 {
     return symbol;
 }

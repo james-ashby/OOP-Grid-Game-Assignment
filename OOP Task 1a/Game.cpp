@@ -8,6 +8,8 @@ void Game::Setup()
     LoadLevel(LEVELMAP3);
     LoadLevel(LEVELMAP4);
     LoadLevel(LEVELMAP5);
+    highScoreList.GetHighScoreList();
+    highScoreList.AddToHighScoreList("DDDD", 5555);
 
 }
 
@@ -23,6 +25,7 @@ void Game::LoadLevel(vector<vector<char>> levelMap)
     vector<vector<char>> map = levelMap;
     Level newLevel;
     
+
     for (int x = 0; x < SIZE; x++)
     {
         for (int y = 0; y < SIZE; y++)

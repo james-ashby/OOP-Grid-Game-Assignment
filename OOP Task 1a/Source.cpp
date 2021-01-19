@@ -4,7 +4,7 @@
 
 int main()
 {
-    InitWindow(940, 640, "OOP Assignment 1");
+    InitWindow(940, 640, "[GAME NAME]");
     SetTargetFPS(60);
 
     //lots of textures consider a diferent way to load? or something not sure if it's possible other than a sprite sheet.
@@ -27,35 +27,48 @@ int main()
     game.Setup();
     InitAudioDevice();              // Initialize audio device
 
-    Music music = LoadMusicStream("./assets/gamemusic.mp3");
+    Music menuMusic = LoadMusicStream("./assets/gamemusic.mp3");
+    Music levelMusic = LoadMusicStream("./assets/levelMusic.mp3");
     Sound deathSound = LoadSound("./assets/DeathNoise.mp3");
+    Sound footstepSound = LoadSound("./assets/footstep01.ogg");
+    Sound footstepAltSound = LoadSound("./assets/footstep08.ogg");
+    Sound keyPickUpSound = LoadSound("./assets/keypickup.ogg");
+
     bool pause = false;
-    PlayMusicStream(music);
+    PlayMusicStream(menuMusic);
     while (!WindowShouldClose())
     {
-        BeginDrawing();
-        ClearBackground(SKYBLUE);
         auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // TODO: maybe look into const currentLevel
-        DrawText("Press Spacebar to Begin!", 80, 350, 60, ORANGE); // TODO: work out how to get this goddamn text to remove on start
-        if (IsKeyPressed(KEY_SPACE))
+        while (!game.IsRunning())
         {
-            game.StartGame();
+            UpdateMusicStream(menuMusic);
+            ClearBackground(SKYBLUE);
+            DrawText("Press Spacebar to Begin!", 80, 350, 60, ORANGE); // TODO: work out how to get this goddamn text to remove on start
             EndDrawing();
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                StopMusicStream(menuMusic);
+
+                game.StartGame();
+            }
         }
         if (game.IsRunning())
         {
+            ClearBackground(SKYBLUE);
+            UpdateMusicStream(levelMusic);
+            PlayMusicStream(levelMusic);
 
-            UpdateMusicStream(music);
-            if (IsKeyPressed(KEY_RIGHT))  game.ProcessInput(KEY_RIGHT, currentLevel);
-            if (IsKeyPressed(KEY_LEFT))   game.ProcessInput(KEY_LEFT, currentLevel);
-            if (IsKeyPressed(KEY_UP))     game.ProcessInput(KEY_UP, currentLevel);
-            if (IsKeyPressed(KEY_DOWN))   game.ProcessInput(KEY_DOWN, currentLevel);
+            if (IsKeyPressed(KEY_RIGHT)) { PlaySound(footstepAltSound); game.ProcessInput(KEY_RIGHT, currentLevel); }
+            if (IsKeyPressed(KEY_LEFT)) { PlaySound(footstepSound); game.ProcessInput(KEY_LEFT, currentLevel);
+        }
+            if (IsKeyPressed(KEY_UP)) { PlaySound(footstepAltSound); game.ProcessInput(KEY_UP, currentLevel); }
+            if (IsKeyPressed(KEY_DOWN)) { PlaySound(footstepSound); game.ProcessInput(KEY_DOWN, currentLevel); }
             if (IsKeyPressed(KEY_P))
             {
                 pause = !pause;
 
-                if (pause) PauseMusicStream(music);
-                else ResumeMusicStream(music);
+                if (pause) PauseMusicStream(levelMusic);
+                else ResumeMusicStream(levelMusic);
             }
             if (game.player.GetLives() < lives)
             {

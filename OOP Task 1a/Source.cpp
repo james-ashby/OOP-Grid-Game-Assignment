@@ -10,6 +10,7 @@ int main()
     //lots of textures consider a diferent way to load? or something not sure if it's possible other than a sprite sheet.
     Texture2D floorTile = LoadTexture("./assets/floor.png");
     Texture2D wallTile = LoadTexture("./assets/wall.png");
+    Texture2D waterTile = LoadTexture("./assets/water.png");
     Texture2D keyTile = LoadTexture("./assets/key2.png");
     Texture2D holeTile = LoadTexture("./assets/hole.png"); //yes i did use the hole emoji
     Texture2D doorClosedTile = LoadTexture("./assets/doorClosed.png");
@@ -86,7 +87,9 @@ int main()
                     case FLOOR:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN);
                         DrawTextureRec(floorTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case WALL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY);
-                        DrawTextureRec(wallTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                                 DrawTextureRec(wallTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                    case OCEAN:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY);
+                                  DrawTextureRec(waterTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case PLAYER: DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
                         if (game.GetPlayerDirection() == 1) { DrawTextureRec(playerFront, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         else if (game.GetPlayerDirection() == 2) { DrawTextureRec(playerRight, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }

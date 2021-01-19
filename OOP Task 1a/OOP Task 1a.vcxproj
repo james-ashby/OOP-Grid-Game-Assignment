@@ -149,6 +149,7 @@
     <ClCompile Include="Spike.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="Water.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="Water.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="HighScores.txt" />

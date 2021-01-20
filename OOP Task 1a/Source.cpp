@@ -197,7 +197,7 @@ int main()
 
             for (auto c : col)
             {
-                c = 65;
+                c = 65; // 65 is ascii A
             }
 
 
@@ -209,7 +209,7 @@ int main()
                     col[currentCol] = 90;
                 }
             }
-            else if (IsKeyPressed(KEY_UP))
+            if (IsKeyPressed(KEY_UP))
             {
                 col[currentCol]++;
                 if (col[currentCol] > 90)
@@ -218,7 +218,7 @@ int main()
                 }
 
             }
-            else if (IsKeyPressed(KEY_LEFT))
+            if (IsKeyPressed(KEY_LEFT))
             {
                 currentCol--;
                 if (currentCol < 0)
@@ -227,7 +227,7 @@ int main()
                 }
 
             }
-            else if (IsKeyPressed(KEY_RIGHT))
+            if (IsKeyPressed(KEY_RIGHT))
             {
                 currentCol++;
                 if (currentCol > 3)
@@ -256,13 +256,15 @@ int main()
             }
 
             DrawText(FormatText("%c,%c,%c,%c", col[0], col[1], col[2], col[3]), 300, 330, 40, BLACK);
-            DrawText(FormatText("Press F to Submit Score:  %i", game.GetScore()), 300, 370, 40, BLACK);
+            DrawText(FormatText("Press F to Save Score:  %i", game.GetScore()), 300, 370, 40, BLACK);
+            DrawText("Press ESC to Quit", 300, 390, 40, BLACK);
 
             if (IsKeyPressed(KEY_F))
             {
                 game.highscoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
                 EndDrawing();
                 CloseWindow();
+
             }
 
             EndDrawing();

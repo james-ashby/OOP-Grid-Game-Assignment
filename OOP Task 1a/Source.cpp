@@ -30,6 +30,7 @@ int main()
 
     Game game;
     int lives = game.player.GetLives();
+    int currentCol = 0;
     vector<pair<string, int>> HighScores = move(game.highScoreList.GetHighScoreList());
     game.Setup();
     InitAudioDevice();              // Initialize audio device
@@ -95,6 +96,7 @@ int main()
                 game.ChangeLevel();
                 currentLevel = game.PrepareGrid(game.CurrentLevelMap());
             }
+
             //const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
             //set size to 32 as it fits the sprites better.
             const int cellSize = 32;
@@ -161,6 +163,7 @@ int main()
             for (auto &Scores : HighScores)
             {
                 i++;
+                char a = 65;
                 int listPosition = 170 + (30 * (i + 1));
                 DrawText(FormatText(": %s, %i", Scores.first.c_str(), Scores.second), 650, listPosition, 30, BLACK);
             }
@@ -175,6 +178,7 @@ int main()
             PlayMusicStream(gameOverMusic);
             ClearBackground(BLACK);
             DrawText("GAME OVER", 130, 250, 120, RED);
+            DrawText("Press F to close", 130, 360, 20, RED);
             EndDrawing();
             if (IsKeyPressed(KEY_F))
             {
@@ -182,6 +186,88 @@ int main()
                 EndDrawing();
                 CloseWindow();
             }
+        }
+        while (!game.IsRunning() && game.player.GetLives() > 0)
+        {
+            ClearBackground(BLUE);
+            StopMusicStream(gameOverMusic);
+            DrawText("YOU WIN", 260, 200, 120, GOLD);
+            DrawText("ENTER NAME", 300, 300, 30, BLACK);
+
+            char col [3];
+
+            for (auto c : col)
+            {
+                c = 65;
+            }
+
+
+            if (IsKeyPressed(KEY_DOWN))
+            {
+                col[currentCol]--;
+                if (col[currentCol] < 65)
+                {
+                    col[currentCol] = 90;
+                }
+            }
+            else if (IsKeyPressed(KEY_UP))
+            {
+                col[currentCol]++;
+                if (col[currentCol] > 90)
+                {
+                    col[currentCol] = 65;
+                }
+
+            }
+            else if (IsKeyPressed(KEY_LEFT))
+            {
+                currentCol--;
+                if (currentCol < 0)
+                {
+                    currentCol = 3;
+                }
+
+            }
+            else if (IsKeyPressed(KEY_RIGHT))
+            {
+                currentCol++;
+                if (currentCol > 3)
+                {
+                    currentCol = 0;
+                }
+
+            }
+
+
+            if (currentCol == 0)
+            {
+                DrawText("_", 300, 335, 40, WHITE);
+            }
+            if (currentCol == 1)
+            {
+                DrawText("_", 340, 335, 40, WHITE);
+            }
+            if (currentCol == 2)
+            {
+                DrawText("_", 380, 335, 40, WHITE);
+            }
+            if (currentCol == 3)
+            {
+                DrawText("_", 420, 335, 40, WHITE);
+            }
+
+            DrawText(FormatText("%c,%c,%c,%c", col[0], col[1], col[2], col[3]), 300, 330, 40, BLACK);
+            DrawText(FormatText("Press F to Submit %i", game.GetScore()), 300, 370, 40, BLACK);
+
+            if (IsKeyPressed(KEY_F))
+            {
+                game.highScoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
+                EndDrawing();
+                CloseWindow();
+            }
+
+            EndDrawing();
+
         }
     }
 

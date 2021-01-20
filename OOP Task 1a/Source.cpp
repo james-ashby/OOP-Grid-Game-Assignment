@@ -8,7 +8,11 @@ int main()
     InitWindow(940, 640, "BABA YADA");
     SetWindowIcon(icon);
     SetTargetFPS(60);
-
+    Font titleFont = LoadFontEx("./assets/mainMenu1.ttf", 32, 0, 250);
+    Font subtitleFont = LoadFontEx("./assets/mainMenu2.ttf", 32, 0, 250);
+    Image babaYadaImg = LoadImage("./assets/yodaSplash.png");
+    ImageResize(&babaYadaImg, 300, 230);
+    Texture2D babaYada = LoadTextureFromImage(babaYadaImg);
     //NICKY HIGHSCORE 338
 
     //lots of textures consider a diferent way to load? or something not sure if it's possible other than a sprite sheet.
@@ -53,15 +57,19 @@ int main()
         while (!game.IsRunning())
         {
             UpdateMusicStream(menuMusic);
-            ClearBackground(SKYBLUE);
-            DrawText("Press Spacebar to Begin!", 80, 350, 60, ORANGE); 
-            EndDrawing();
+            ClearBackground(BROWN);
+            DrawTexture(babaYada, 550, 340, WHITE);
+            DrawRectangle(50, 180, 520, 115, GRAY);
+            DrawTextEx(titleFont, "Baba Yada's\n Adventure", { 5.0f, 25.0f }, 60, 2, GREEN);
+            DrawTextEx(subtitleFont, "for\n non-descript\n  space metal", { 60.0f, 200.0f }, 20, 2, BLACK);
+            DrawText("Grab the key!\nDodge the spikes!\nEscape the level!", 160, 400, 30, GOLD);
+            DrawText("Press Space to Begin!", 80, 550, 40, ORANGE); 
             if (IsKeyPressed(KEY_SPACE))
             {
                 StopMusicStream(menuMusic);
-
                 game.StartGame();
             }
+            EndDrawing();
         }
         if (game.IsRunning())
         {
@@ -69,7 +77,7 @@ int main()
             UpdateMusicStream(levelMusic);
             PlayMusicStream(levelMusic);
 
-            if (IsKeyPressed(KEY_RIGHT)) { PlaySound(keyPickUpSound); game.ProcessInput(KEY_RIGHT, currentLevel); }
+            if (IsKeyPressed(KEY_RIGHT)) { PlaySound(gameOverSound);; game.ProcessInput(KEY_RIGHT, currentLevel); }
             if (IsKeyPressed(KEY_LEFT)) { PlaySound(footstepSound); game.ProcessInput(KEY_LEFT, currentLevel);
         }
             if (IsKeyPressed(KEY_UP)) { PlaySound(footstepAltSound); game.ProcessInput(KEY_UP, currentLevel); }
@@ -172,7 +180,7 @@ int main()
         while (!game.IsRunning() && game.player.GetLives() == 0)
         {
             
-            PlaySound(gameOverSound);
+            
             UpdateMusicStream(gameOverMusic);
             PlayMusicStream(gameOverMusic);
             ClearBackground(BLACK);

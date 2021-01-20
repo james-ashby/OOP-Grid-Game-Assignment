@@ -16,6 +16,7 @@ int main()
     Texture2D wallTile = LoadTexture("./assets/wall.png");
     Texture2D waterTile = LoadTexture("./assets/water.png");
     Texture2D keyTile = LoadTexture("./assets/key2.png");
+    Texture2D coinTile = LoadTexture("./assets/nonCopyrightSpaceMetal.png");
     Texture2D spikeUp = LoadTexture("./assets/spikeUp.png");
     Texture2D spikeDown = LoadTexture("./assets/spikeDown.png");
     Texture2D holeTile = LoadTexture("./assets/hole.png"); //yes i did use the hole emoji
@@ -86,6 +87,7 @@ int main()
             }
             currentLevel = game.PrepareGrid(game.CurrentLevelMap());
             game.LevelRemoveKey();
+            game.LevelRemoveCoin(); //COMBINE THESE FUNCTIONS.
 
             if (game.LevelComplete())
             {
@@ -124,9 +126,12 @@ int main()
                     case HOLE:   
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLACK);
                         DrawTextureRec(holeTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case KEY:    
+                    case KEY:
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);
-                        DrawTextureRec(keyTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                        DrawTextureRec(keyTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;                    
+                    case COIN:
+                            DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);
+                            DrawTextureRec(coinTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case DOOR:   
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
                         if (game.player.GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }

@@ -58,6 +58,10 @@ void Level::AddKey(int x, int y)
 {
     keys.push_back(Key(x, y));
 }
+void Level::AddCoin(int x, int y)
+{
+    coins.push_back(Coin(x, y));
+}
 void Level::AddWater(int x, int y)
 {
     waters.push_back(Water(x, y));
@@ -77,6 +81,18 @@ void Level::RemoveKey(int x, int y)
         }
     }
 }
+
+void Level::RemoveCoin(int x, int y)
+{
+    for (int i = 0; i < coins.size(); i++)
+    {
+        if (coins[i].GetX() == x && coins[i].GetY() == y)
+        {
+            coins.erase(coins.begin() + i);
+        }
+    }
+}
+
 vector<Spike> Level::GetSpikes()
 {
     return spikes;
@@ -111,6 +127,18 @@ bool Level::IsKeyAtPosition(int x, int y)
     for (size_t i = 0; i < keys.size(); ++i)
     {
         if (keys[i].IsAtPosition(x, y))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+bool Level::IsCoinAtPosition(int x, int y)
+{
+    for (size_t i = 0; i < coins.size(); ++i)
+    {
+        if (coins[i].IsAtPosition(x, y))
         {
             return true;
         }

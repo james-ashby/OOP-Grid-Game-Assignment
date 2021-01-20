@@ -13,6 +13,7 @@
 #define SPIKE     'S'
 #define SPIKEDOWN 'X'
 #define OCEAN     'O' //W WAS TAKEN D:
+#define COIN      'C'
 // the command letters to move the mouse on the maze
 #define KEY_RIGHT 262
 #define KEY_LEFT  263
@@ -30,8 +31,8 @@
     { 'O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O','O' },\
     { 'O','O','O','O','F','F','F','F','F','F','F','F','F','F','F','F','O','O','O','O' },\
     { 'O','O','O','O','F','F','F','W','W','W','W','W','W','W','W','W','O','O','O','O' },\
-    { 'O','O','O','O','W','W','W','W','F','F','F','F','F','W','W','W','O','O','O','O' },\
-    { 'O','O','O','O','F','F','F','F','F','F','F','F','F','W','W','W','O','O','O','O' },\
+    { 'O','O','O','O','W','W','W','W','F','F','F','C','C','W','W','W','O','O','O','O' },\
+    { 'O','O','O','O','F','F','F','F','F','F','F','C','C','W','W','W','O','O','O','O' },\
     { 'O','O','O','O','F','W','W','W','W','W','W','F','F','W','W','W','O','O','O','O' },\
     { 'O','O','O','O','F','F','F','F','F','F','W','F','F','F','F','W','O','O','O','O' },\
     { 'O','O','O','O','W','W','F','W','F','F','P','F','W','F','F','W','O','O','O','O' },\

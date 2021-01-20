@@ -24,6 +24,7 @@ class Game
       bool IsRunning();
       void ChangeLevel();
       void LevelRemoveKey();
+      void LevelRemoveCoin();
       int GetScore();
       int GetCurrentLevel();
       int GetPlayerDirection();

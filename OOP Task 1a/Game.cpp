@@ -23,7 +23,7 @@ void Game::LoadLevel(vector<vector<char>> levelMap)
 {
     vector<vector<char>> map = levelMap;
     Level newLevel;
-    
+
 
     for (int x = 0; x < SIZE; x++)
     {
@@ -36,11 +36,14 @@ void Game::LoadLevel(vector<vector<char>> levelMap)
             if (map[x][y] == HOLE)
             {
                 newLevel.AddHole(x, y);
-                
+
             }
             if (map[x][y] == KEY)
             {
                 newLevel.AddKey(x, y);
+            }
+            if (map[x][y] == COIN){
+                newLevel.AddCoin(x, y);
             }
             if (map[x][y] == DOOR)
             {
@@ -97,6 +100,9 @@ vector<vector<char>> Game::PrepareGrid(Level level)
             else if (level.IsKeyAtPosition(row, col))
             {
                 line.push_back(KEY);
+            }
+            else if (level.IsCoinAtPosition(row, col)) {
+                line.push_back(COIN);
             }
             else if (level.IsDoorAtPosition(row, col))
             {
@@ -181,6 +187,11 @@ void Game::ChangeLevel()
 void Game::LevelRemoveKey()
 {
     levels[currentLevel].RemoveKey(player.GetY(), player.GetX());
+}
+
+void Game::LevelRemoveCoin()
+{
+    levels[currentLevel].RemoveCoin(player.GetY(), player.GetX());
 }
 
 int Game::GetScore()

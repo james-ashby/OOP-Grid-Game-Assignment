@@ -81,6 +81,11 @@ void Player::Move(int key)
             score.addKey();
             this->currentGrid[nextY][nextX] = FLOOR;
 		}
+        if (this->currentGrid[nextY][nextX] == COIN)  
+        {
+            score.Add100();
+            this->currentGrid[nextY][nextX] = FLOOR;
+        }
 		if (this->currentGrid[nextY][nextX] == HOLE || this->currentGrid[nextY][nextX] == SPIKEDOWN) // If the player moves onto a hole, remove a life and respawn them
 		{
 			RemoveLife();

@@ -56,7 +56,7 @@ int main()
     while (!WindowShouldClose())
     {
         auto currentLevel = game.PrepareGrid(game.CurrentLevelMap());
-        while (!game.IsRunning())
+        while (!game.IsRunning() && !WindowShouldClose())
         {
             UpdateMusicStream(menuMusic);
             ClearBackground(BROWN);
@@ -73,7 +73,7 @@ int main()
             }
             EndDrawing();
         }
-        if (game.IsRunning())
+        if (game.IsRunning() && !WindowShouldClose())
         {
             ClearBackground(SKYBLUE);
             UpdateMusicStream(levelMusic);
@@ -180,6 +180,7 @@ int main()
         }
         EndDrawing();
         while (!game.IsRunning() && game.GetPlayer().GetLives() == 0)
+        while (!game.IsRunning() && game.player.GetLives() == 0 && !WindowShouldClose())
         {
             
             
@@ -197,6 +198,7 @@ int main()
             }
         }
         while (!game.IsRunning() && game.GetPlayer().GetLives() > 0)
+        while (!game.IsRunning() && game.player.GetLives() > 0 && !WindowShouldClose())
         {
             ClearBackground(BLUE);
             StopMusicStream(gameOverMusic);
@@ -266,13 +268,13 @@ int main()
             }
 
             DrawText(FormatText("%c,%c,%c,%c", col[0], col[1], col[2], col[3]), 300, 330, 40, BLACK);
-            DrawText(FormatText("Press F to Submit %i", game.GetScore()), 300, 370, 40, BLACK);
+            DrawText(FormatText("Press F to Submit Score:  %i", game.GetScore()), 300, 370, 40, BLACK);
 
             if (IsKeyPressed(KEY_F))
             {
                 game.highscoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
                 EndDrawing();
-                CloseWindow();
+
             }
 
             EndDrawing();

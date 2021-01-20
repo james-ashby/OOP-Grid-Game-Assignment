@@ -46,7 +46,9 @@ int main()
     Sound gameOverSound = LoadSound("./assets/gameoversound.mp3");
 
     Sound footstepSound = LoadSound("./assets/footstepA.mp3");
-    Sound footstepAltSound = LoadSound("./assets/footstepB.mp3");
+    Sound footstepAltSound = LoadSound("./assets/footstepB.mp3"); //
+    Sound footstepAltSoundB = LoadSound("./assets/footstepC.mp3");
+    Sound footstepAltSoundC = LoadSound("./assets/footstepD.mp3");
     Sound keyPickUpSound = LoadSound("./assets/keypickup.ogg");
 
     bool pause = false;
@@ -77,11 +79,11 @@ int main()
             UpdateMusicStream(levelMusic);
             PlayMusicStream(levelMusic);
 
-            if (IsKeyPressed(KEY_RIGHT)) { PlaySound(gameOverSound);; game.ProcessInput(KEY_RIGHT, currentLevel); }
+            if (IsKeyPressed(KEY_RIGHT)) { PlaySound(footstepAltSound);; game.ProcessInput(KEY_RIGHT, currentLevel); }
             if (IsKeyPressed(KEY_LEFT)) { PlaySound(footstepSound); game.ProcessInput(KEY_LEFT, currentLevel);
         }
-            if (IsKeyPressed(KEY_UP)) { PlaySound(footstepAltSound); game.ProcessInput(KEY_UP, currentLevel); }
-            if (IsKeyPressed(KEY_DOWN)) { PlaySound(footstepSound); game.ProcessInput(KEY_DOWN, currentLevel); }
+            if (IsKeyPressed(KEY_UP)) { PlaySound(footstepAltSoundB); game.ProcessInput(KEY_UP, currentLevel); }
+            if (IsKeyPressed(KEY_DOWN)) { PlaySound(footstepAltSoundC); game.ProcessInput(KEY_DOWN, currentLevel); }
             if (IsKeyPressed(KEY_P))
             {
                 pause = !pause;

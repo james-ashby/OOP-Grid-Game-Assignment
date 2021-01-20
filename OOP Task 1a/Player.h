@@ -1,8 +1,8 @@
 #pragma once
 
 #include "constants.h"
-#include <vector>
 #include "Score.h"
+#include <vector>
 
 using namespace std;
 class Player
@@ -29,8 +29,6 @@ class Player
         void MoveToSpawn();
         void ChangeDirection(int _direction);
         int GetKeys();
-        char symbol;
-        int  x, y;
     private:
         // data members
         bool alive;
@@ -41,6 +39,8 @@ class Player
         int direction;
         bool levelComplete;
         int currentLevel;
+        char symbol;
+        int  x, y;
         Score score;
         vector<vector<char>> currentGrid;
         // supporting functions 

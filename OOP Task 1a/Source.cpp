@@ -54,6 +54,8 @@ int main()
         auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // Prepares the empty level with the map of char values in order to render correctly
         while (!game.IsRunning() && !WindowShouldClose())
         {
+
+            // Plays main menu music and draws the main menu 
             PlayMusicStream(menuMusic);
             UpdateMusicStream(menuMusic);
             ClearBackground(BROWN);
@@ -63,6 +65,8 @@ int main()
             DrawTextEx(subtitleFont, "for\n non-descript\n  space metal", { 60.0f, 200.0f }, 20, 2, BLACK);
             DrawText("Grab the key!\nDodge the spikes!\nEscape the level!", 160, 400, 30, GOLD);
             DrawText("Press Space to Begin!", 80, 550, 40, ORANGE); 
+
+            
             if (IsKeyPressed(KEY_SPACE))
             {
                 StopMusicStream(menuMusic);

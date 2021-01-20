@@ -29,12 +29,16 @@ int main()
 
     Game game;
     int lives = game.player.GetLives();
+    vector<pair<string, int>> HighScores = move(game.highScoreList.GetHighScoreList());
     game.Setup();
     InitAudioDevice();              // Initialize audio device
 
     Music menuMusic = LoadMusicStream("./assets/gamemusic.mp3");
+    Music gameOverMusic = LoadMusicStream("./assets/gameoverMusic.mp3");
     Music levelMusic = LoadMusicStream("./assets/levelMusic.mp3");
     Sound deathSound = LoadSound("./assets/DeathNoise.mp3");
+    Sound gameOverSound = LoadSound("./assets/gameoversound.mp3");
+
     Sound footstepSound = LoadSound("./assets/footstep01.ogg");
     Sound footstepAltSound = LoadSound("./assets/footstep08.ogg");
     Sound keyPickUpSound = LoadSound("./assets/keypickup.ogg");
@@ -146,16 +150,33 @@ int main()
             DrawText(FormatText("Score = %i", game.GetScore()), 650, 10, 40, GOLD);
             DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
             DrawText(FormatText("Keys = %i", game.player.GetKeys()), 650, 130, 40, BLUE);
+            DrawText(FormatText("HighScores:"), 650, 170, 40, BLACK);
+            int i = 0;
+            for (auto &Scores : HighScores)
+            {
+                i++;
+                int listPosition = 170 + (30 * (i + 1));
+                DrawText(FormatText(": %s, %i", Scores.first.c_str(), Scores.second), 650, listPosition, 30, BLACK);
+            }
             DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
         }
-        else
+        EndDrawing();
+        while (!game.IsRunning() && game.player.GetLives() == 0)
         {
-            if (game.player.GetLives() == 0)
+            
+            PlaySound(gameOverSound);
+            UpdateMusicStream(gameOverMusic);
+            PlayMusicStream(gameOverMusic);
+            ClearBackground(BLACK);
+            DrawText("GAME OVER", 130, 250, 120, RED);
+            EndDrawing();
+            if (IsKeyPressed(KEY_F))
             {
-                DrawText("OUT OF LIVES\n GAME OVER", 650, 300, 35, RED);
+                StopMusicStream(gameOverMusic);
+                EndDrawing();
+                CloseWindow();
             }
         }
-        EndDrawing();
     }
 
     CloseWindow();

@@ -23,7 +23,7 @@ int HighScoreList::partition(vector<pair<string, int>>& A, int p, int q)
 
     for (j = p + 1; j < q; j++)
     {
-        if (A[j].second <= x)
+        if (A[j].second >= x)
         {
             i = i + 1;
             swap(A[i], A[j]);
@@ -40,7 +40,7 @@ const vector<pair<string, int>>& HighScoreList::GetHighScoreList()
     ifhighScoreFile.open("HighScores.txt");
     if (ifhighScoreFile.is_open())
     {
-        while (getline(ifhighScoreFile,line)) // not a clue why this wont work, trying to google issue just gives 1000s pages of include string... it is included.
+        while (getline(ifhighScoreFile,line))
         {
             name = (line.substr(0, 4));
             score = stoi(line.substr(4, line.length()));
@@ -53,7 +53,13 @@ const vector<pair<string, int>>& HighScoreList::GetHighScoreList()
 
     }
     quickSort(highScores, 0, highScores.size());
-    return highScores;
+
+    for (int i = 0; i < 5; i++)
+    {
+        shortList.push_back(make_pair(highScores[i].first, highScores[i].second));
+    }
+
+    return shortList;
 }
 
 void HighScoreList::AddToHighScoreList(string newName, int newScore)

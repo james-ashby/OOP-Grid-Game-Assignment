@@ -14,6 +14,7 @@ private:
     ofstream ofhighScoreFile;
     string line;
     vector<pair<string, int>> highScores;
+    vector<pair<string, int>> shortList;
     string name;
     int score;
     void quickSort(vector<pair<string, int>>& A, int p, int q);
@@ -22,7 +23,7 @@ private:
 
 public:
     HighScoreList();
-    const vector<pair<string, int>>& GetHighScoreList();
+    const vector<pair<string, int>>& HighScoreList::GetHighScoreList();
     void AddToHighScoreList(string name, int score);
 };
 

@@ -174,8 +174,15 @@ bool Game::IsRunning()
 
 void Game::ChangeLevel()
 {
-    currentLevel++;
-    player.MoveToSpawn();
+    if (currentLevel < 4)
+    {
+        currentLevel++;
+        player.MoveToSpawn();
+    }
+    else
+    {
+        started = false;
+    }
 }
 
 void Game::LevelRemoveKey()

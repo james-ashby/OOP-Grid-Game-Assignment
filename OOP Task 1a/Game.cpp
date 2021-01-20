@@ -7,7 +7,7 @@ void Game::Setup()
     LoadLevel(LEVELMAP3);
     LoadLevel(LEVELMAP4);
     LoadLevel(LEVELMAP5);
-    highScoreList.GetHighScoreList();
+    highscoreList.GetHighScoreList();
 }
 
 void Game::ProcessInput(int key, const vector<vector<char>>& currentGrid)
@@ -208,4 +208,9 @@ bool Game::HasStarted()
 void Game::StartGame()
 {
     this->started = true;
+}
+
+Player Game::GetPlayer() 
+{
+    return this->player;
 }

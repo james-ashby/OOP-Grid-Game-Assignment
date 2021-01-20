@@ -13,7 +13,7 @@ int main()
     int lives = game.GetPlayer().GetLives();
     int currentCol = 0;
     vector<pair<string, int>> HighScores = move(game.highscoreList.GetHighScoreList());
-    game.Setup();
+    game.Setup(); // Loads the maps for each level so that we can iterate through them easily
     InitAudioDevice();
 
     // Load game assets
@@ -51,7 +51,7 @@ int main()
                    
     while (!WindowShouldClose())
     {
-        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // 
+        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // Prepares the empty level with the map of char values in order to render correctly
         while (!game.IsRunning() && !WindowShouldClose())
         {
             PlayMusicStream(menuMusic);
@@ -87,14 +87,14 @@ int main()
                 lives--;
                 PlaySound(deathSound);
             }
-            currentLevel = game.PrepareGrid(game.CurrentLevelMap());
-            game.LevelRemoveKey();
-            game.LevelRemoveCoin(); //COMBINE THESE FUNCTIONS.
+            currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // Updates the level with any changes from player inputs (i.e spike toggles)
+            game.LevelRemoveKey();  // These functions check the tile the player is no to remove either keys/coins when stepped on
+            game.LevelRemoveCoin(); //
 
             if (game.LevelComplete())
             {
                 game.ChangeLevel();
-                currentLevel = game.PrepareGrid(game.CurrentLevelMap());
+                currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // Set the current level to the map of chars of the next level
             }
 
             //const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));

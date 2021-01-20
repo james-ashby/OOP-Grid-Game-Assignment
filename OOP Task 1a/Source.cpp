@@ -101,9 +101,8 @@ int main()
                 currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // Set the current level to the map of chars of the next level
             }
 
-            //const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
-            //set size to 32 as it fits the sprites better.
-            const int cellSize = 32;
+
+            const int cellSize = 32; // Cell size 32 to match pixel size of custom assets
 
 
             for (int x = 0; x < SIZE; x++)
@@ -126,6 +125,8 @@ int main()
                         DrawTextureRec(waterTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case PLAYER: 
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
+
+                        // Changes the player sprite based on the direction they are facing, to avoid player moonwalking etc.
                         if (game.GetPlayerDirection() == 1) { DrawTextureRec(playerFront, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         else if (game.GetPlayerDirection() == 2) { DrawTextureRec(playerRight, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         else if (game.GetPlayerDirection() == 3) { DrawTextureRec(playerBack, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
@@ -141,6 +142,7 @@ int main()
                             DrawTextureRec(coinTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case DOOR:   
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
+                        // Changes the door tile of the current level to an open door if the player has picked up the key
                         if (game.GetPlayer().GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         else { DrawTextureRec(doorOpenTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); } break; //this is a temp fix, i think it can be done better.
                     case SPIKE:  
@@ -150,18 +152,15 @@ int main()
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLUE);                                     
                         DrawTextureRec(spikeDown, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
 
-                    default:     assert(false);  // if this hits you probably forgot to add your new tile type :)
+                    default:     assert(false);  // if this hits you probably forgot to add your new tile type :) -- this was a very nice comment
                     }
-
-                    // draw lines around each tile, remove this if you don't like it!
-                   //DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY); Disabled it for now to test how textures will look.
+                 
                 }
             }
+            // Draws the UI so that the user knows vital information 
             DrawText(FormatText("Lives = %i", game.GetPlayer().GetLives()), 650, 50, 40, RED);
-            //can add heart sprites here if we want to.
             DrawText(FormatText("Score = %i", game.GetScore()), 650, 10, 40, GOLD);
             DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
-            DrawText(FormatText("Keys = %i", game.GetPlayer().GetKeys()), 650, 130, 40, BLUE);
             DrawText(FormatText("HighScores:"), 650, 320, 40, BLACK);
             int i = 0;
             for (auto &Scores : HighScores)

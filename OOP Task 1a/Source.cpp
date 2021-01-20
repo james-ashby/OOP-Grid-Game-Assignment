@@ -51,7 +51,6 @@ int main()
     Sound footstepAltSoundC = LoadSound("./assets/footstepD.mp3");
     Sound keyPickUpSound = LoadSound("./assets/keypickup.ogg");
 
-    bool pause = false;
     PlayMusicStream(menuMusic);
     while (!WindowShouldClose())
     {
@@ -84,13 +83,7 @@ int main()
         }
             if (IsKeyPressed(KEY_UP)) { PlaySound(footstepAltSoundB); game.ProcessInput(KEY_UP, currentLevel); }
             if (IsKeyPressed(KEY_DOWN)) { PlaySound(footstepAltSoundC); game.ProcessInput(KEY_DOWN, currentLevel); }
-            if (IsKeyPressed(KEY_P))
-            {
-                pause = !pause;
 
-                if (pause) PauseMusicStream(levelMusic);
-                else ResumeMusicStream(levelMusic);
-            }
             if (game.GetPlayer().GetLives() < lives)
             {
                 lives--;
@@ -176,7 +169,6 @@ int main()
                 int listPosition = 170 + (30 * (i + 1));
                 DrawText(FormatText(": %s, %i", Scores.first.c_str(), Scores.second), 650, listPosition, 30, BLACK);
             }
-            DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
         }
         EndDrawing();
         while (!game.IsRunning() && game.GetPlayer().GetLives() == 0 && !WindowShouldClose())

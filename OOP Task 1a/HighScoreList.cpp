@@ -56,7 +56,7 @@ const vector<pair<string, int>>& HighScoreList::GetHighScoreList()
 
     for (int i = 0; i < 5; i++)
     {
-        shortList.push_back(make_pair(highScores[i].first, highScores[i].second));
+        shortList.push_back(make_pair(highScores[i].first, highScores[i].second)); // high score list is only so long so shouldnt need to pass the full list
     }
 
     return shortList;
@@ -70,11 +70,7 @@ void HighScoreList::AddToHighScoreList(string newName, int newScore)
     {
          ofhighScoreFile << "\n" << newName << newScore;
     }
-    else
-    {
-
-    }
-    quickSort(highScores, 0, highScores.size() - 1);
+    quickSort(highScores, 0, highScores.size());
 
 }
 

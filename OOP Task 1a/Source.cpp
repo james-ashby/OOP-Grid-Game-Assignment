@@ -207,7 +207,7 @@ int main()
 
             for (auto c : col)
             {
-                c = 65;
+                c = 65; // 65 is ascii A
             }
 
 
@@ -219,7 +219,7 @@ int main()
                     col[currentCol] = 90;
                 }
             }
-            else if (IsKeyPressed(KEY_UP))
+            if (IsKeyPressed(KEY_UP))
             {
                 col[currentCol]++;
                 if (col[currentCol] > 90)
@@ -228,7 +228,7 @@ int main()
                 }
 
             }
-            else if (IsKeyPressed(KEY_LEFT))
+            if (IsKeyPressed(KEY_LEFT))
             {
                 currentCol--;
                 if (currentCol < 0)
@@ -237,7 +237,7 @@ int main()
                 }
 
             }
-            else if (IsKeyPressed(KEY_RIGHT))
+            if (IsKeyPressed(KEY_RIGHT))
             {
                 currentCol++;
                 if (currentCol > 3)

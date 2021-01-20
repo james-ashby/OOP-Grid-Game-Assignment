@@ -160,13 +160,13 @@ int main()
             DrawText(FormatText("Score = %i", game.GetScore()), 650, 10, 40, GOLD);
             DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
             DrawText(FormatText("Keys = %i", game.GetPlayer().GetKeys()), 650, 130, 40, BLUE);
-            DrawText(FormatText("HighScores:"), 650, 170, 40, BLACK);
+            DrawText(FormatText("HighScores:"), 650, 320, 40, BLACK);
             int i = 0;
             for (auto &Scores : HighScores)
             {
                 i++;
                 char a = 65;
-                int listPosition = 170 + (30 * (i + 1));
+                int listPosition = 320 + (30 * (i + 1));
                 DrawText(FormatText(": %s, %i", Scores.first.c_str(), Scores.second), 650, listPosition, 30, BLACK);
             }
         }

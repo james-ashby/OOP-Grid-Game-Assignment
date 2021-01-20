@@ -26,16 +26,10 @@ public:
     bool IsDoorAtPosition(int x, int y);
     bool IsSpikeAtPosition(int x, int y);
     bool IsWaterAtPosition(int x, int y);
-    void AddWall(int x, int y);
-    void AddHole(int x, int y);
-    void AddKey(int x, int y);
-    void AddCoin(int x, int y);
-    void AddWater(int x, int y);
-    void AddSpike(int x, int y, char active);
+    void AddTile(char tile, int x, int y);
     void RemoveKey(int x, int y);
     void RemoveCoin(int x, int y);
     vector<Spike> GetSpikes();
-    void AddDoor(int x, int y);
     void ToggleSpikes();
     bool SpikesActive();
 

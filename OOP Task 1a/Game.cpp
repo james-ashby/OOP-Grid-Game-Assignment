@@ -1,6 +1,5 @@
 #include "Game.h"
 
-
 void Game::Setup()
 {
     LoadLevel(LEVELMAP1);
@@ -9,7 +8,6 @@ void Game::Setup()
     LoadLevel(LEVELMAP4);
     LoadLevel(LEVELMAP5);
     highScoreList.GetHighScoreList();
-
 }
 
 void Game::ProcessInput(int key, const vector<vector<char>>& currentGrid)
@@ -24,47 +22,40 @@ void Game::LoadLevel(vector<vector<char>> levelMap)
     vector<vector<char>> map = levelMap;
     Level newLevel;
 
-
     for (int x = 0; x < SIZE; x++)
     {
         for (int y = 0; y < SIZE; y++)
         {
-            if (map[x][y] == WALL)
-            {
-                newLevel.AddWall(x, y);
-            }
-            if (map[x][y] == HOLE)
-            {
-                newLevel.AddHole(x, y);
-
-            }
-            if (map[x][y] == KEY)
-            {
-                newLevel.AddKey(x, y);
-            }
-            if (map[x][y] == COIN){
-                newLevel.AddCoin(x, y);
-            }
-            if (map[x][y] == DOOR)
-            {
-                newLevel.AddDoor(x, y);
-            }
-            if (map[x][y] == SPIKE)
-            {
-                newLevel.AddSpike(x, y, SPIKE);
-            }
-            if (map[x][y] == SPIKEDOWN)
-            {
-                newLevel.AddSpike(x, y, SPIKEDOWN);
-            }
-            if (map[x][y] == OCEAN)
-            {
-                newLevel.AddWater(x, y);
+            char currentTile = map[x][y];
+            switch (currentTile) {
+            case WALL:
+                newLevel.AddTile(currentTile, x, y);
+                break;
+            case HOLE:
+                newLevel.AddTile(currentTile, x, y);
+                break;
+            case KEY:
+                newLevel.AddTile(currentTile, x, y);
+                break;
+            case COIN:
+                newLevel.AddTile(currentTile, x, y);
+                break;
+            case DOOR:
+                newLevel.AddTile(currentTile, x, y);
+                break;
+            case SPIKE:
+                newLevel.AddTile(currentTile, x, y);
+                break;
+            case SPIKEDOWN:
+                newLevel.AddTile(currentTile, x, y);
+                break;
+            case OCEAN:
+                newLevel.AddTile(currentTile, x, y);
+                break;
             }
         }
     }
     levels.push_back(newLevel);
-
 }
 
 /// <summary>
@@ -89,7 +80,7 @@ vector<vector<char>> Game::PrepareGrid(Level level)
             {
                 line.push_back(player.GetSymbol());
             }
-            else if (level.IsWallAtPosition(row, col)) 
+            else if (level.IsWallAtPosition(row, col))
             {
                 line.push_back(WALL);
             }
@@ -139,11 +130,9 @@ vector<vector<char>> Game::PrepareGrid(Level level)
                 line.push_back(FLOOR);
             }
         }
-
         // now that the row is full, add it to the 2D grid
         grid.push_back(line);
     }
-
     return grid;
 }
 
@@ -160,8 +149,6 @@ bool Game::LevelComplete()
         return true;
     }
 }
-
-
 
 bool Game::IsRunning()
 {
@@ -184,16 +171,13 @@ void Game::ChangeLevel()
     player.MoveToSpawn();
 }
 
-void Game::LevelRemoveKey()
-{
+void Game::LevelRemoveKey() {
     levels[currentLevel].RemoveKey(player.GetY(), player.GetX());
 }
 
-void Game::LevelRemoveCoin()
-{
+void Game::LevelRemoveCoin() {
     levels[currentLevel].RemoveCoin(player.GetY(), player.GetX());
 }
-
 int Game::GetScore()
 {
     return player.GetScore();

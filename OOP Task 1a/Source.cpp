@@ -9,7 +9,7 @@ int main()
     SetWindowIcon(icon);
     SetTargetFPS(60);
 
-    //NICKY HIGHSCORE 338
+    //NICKY HIGHSCORE 340
 
     //lots of textures consider a diferent way to load? or something not sure if it's possible other than a sprite sheet.
     Texture2D floorTile = LoadTexture("./assets/floor.png");
@@ -86,6 +86,7 @@ int main()
                 PlaySound(deathSound);
             }
             currentLevel = game.PrepareGrid(game.CurrentLevelMap());
+            //game.RemoveItem();
             game.LevelRemoveKey();
             game.LevelRemoveCoin(); //COMBINE THESE FUNCTIONS.
 
@@ -130,8 +131,8 @@ int main()
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);
                         DrawTextureRec(keyTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;                    
                     case COIN:
-                            DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);
-                            DrawTextureRec(coinTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);
+                        DrawTextureRec(coinTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case DOOR:   
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
                         if (game.player.GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }

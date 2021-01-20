@@ -1,4 +1,5 @@
 #include "Level.h"
+
 bool Level::IsWallAtPosition(int x, int y)
 {
     for (size_t i = 0; i < walls.size(); ++i)
@@ -46,29 +47,35 @@ bool Level::IsWaterAtPosition(int x, int y)
     }
     return false;
 }
-void Level::AddWall(int x, int y)
+
+void Level::AddTile(char tile, int x, int y)
 {
-    walls.push_back(Wall(x, y));
-}
-void Level::AddHole(int x, int y)
-{
-    holes.push_back(Hole(x, y));
-}
-void Level::AddKey(int x, int y)
-{
-    keys.push_back(Key(x, y));
-}
-void Level::AddCoin(int x, int y)
-{
-    coins.push_back(Coin(x, y));
-}
-void Level::AddWater(int x, int y)
-{
-    waters.push_back(Water(x, y));
-}
-void Level::AddSpike(int x, int y, char active)
-{
-    spikes.push_back(Spike(x, y, active));
+    switch (tile) {
+    case WALL:
+        walls.push_back(Wall(x, y));
+        break;
+    case HOLE:
+        holes.push_back(Hole(x, y));
+        break;
+    case KEY:
+        keys.push_back(Key(x, y));
+        break;
+    case COIN:
+        coins.push_back(Coin(x, y));
+        break;
+    case DOOR:
+        doors.push_back(Door(x, y));
+        break;
+    case SPIKE:
+        spikes.push_back(Spike(x, y, tile));
+        break;
+    case SPIKEDOWN:
+        spikes.push_back(Spike(x, y, tile));
+        break;
+    case OCEAN:
+        waters.push_back(Water(x, y));
+        break;
+    }
 }
 
 void Level::RemoveKey(int x, int y)
@@ -97,11 +104,7 @@ vector<Spike> Level::GetSpikes()
 {
     return spikes;
 }
-void Level::AddDoor(int x, int y)
-{
-    doors.push_back(Door(x, y));
 
-}
 void Level::ToggleSpikes()
 {
     spikesActive = !spikesActive;

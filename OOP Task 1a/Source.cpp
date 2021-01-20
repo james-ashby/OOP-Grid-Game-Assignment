@@ -179,8 +179,7 @@ int main()
             DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
         }
         EndDrawing();
-        while (!game.IsRunning() && game.GetPlayer().GetLives() == 0)
-        while (!game.IsRunning() && game.player.GetLives() == 0 && !WindowShouldClose())
+        while (!game.IsRunning() && game.GetPlayer().GetLives() == 0 && !WindowShouldClose())
         {
             
             
@@ -197,8 +196,7 @@ int main()
                 CloseWindow();
             }
         }
-        while (!game.IsRunning() && game.GetPlayer().GetLives() > 0)
-        while (!game.IsRunning() && game.player.GetLives() > 0 && !WindowShouldClose())
+        while (!game.IsRunning() && game.GetPlayer().GetLives() > 0 && !WindowShouldClose())
         {
             ClearBackground(BLUE);
             StopMusicStream(gameOverMusic);

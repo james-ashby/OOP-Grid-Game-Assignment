@@ -10,9 +10,9 @@ int Score::getScore()
     return score;
 }
 
-void Score::Add100()
+void Score::Add(int howMuch)
 {
-    score = score + 100;
+    score = score + howMuch;
 }
 
 void Score::Drop1()

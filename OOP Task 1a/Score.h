@@ -7,7 +7,7 @@ private:
 public:
     Score(int initScore);
     int getScore();
-    void Add100();
+    void Add(int howMuch);
     void Drop1();
     bool IsNull();
     int getKeysHeld();

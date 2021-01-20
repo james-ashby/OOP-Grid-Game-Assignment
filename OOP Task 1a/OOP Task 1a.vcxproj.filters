@@ -15,6 +15,7 @@
     <ClCompile Include="HighScoreList.cpp" />
     <ClCompile Include="Spike.cpp" />
     <ClCompile Include="Water.cpp" />
+    <ClCompile Include="Coin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="HighScoreList.h" />
     <ClInclude Include="Spike.h" />
     <ClInclude Include="Water.h" />
+    <ClInclude Include="Coin.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="HighScores.txt" />

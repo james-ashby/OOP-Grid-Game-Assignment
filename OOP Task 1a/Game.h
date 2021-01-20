@@ -13,25 +13,30 @@ using namespace std;
 class Game
 {
    public:
-      Player player;
-      HighScoreList highScoreList;
-      void Setup();
-      void LoadLevel(vector<vector<char>> levelMap);
-      void ProcessInput(int key, const vector<vector<char>>& currentGrid);
-      vector<vector<char>> PrepareGrid(Level level);
-      Level CurrentLevelMap();
-      bool LevelComplete();
-      bool IsRunning();
-      void ChangeLevel();
-      void LevelRemoveKey();
-      void LevelRemoveCoin();
-      int GetScore();
-      int GetCurrentLevel();
-      int GetPlayerDirection();
-      bool HasStarted();
-      void StartGame();
-private:
-    vector<Level> levels;
-    int currentLevel = 0;
-    bool started = false;
+       //accessors
+        Player GetPlayer();
+        HighScoreList GetHighscoreList();
+       //mutators
+        void Setup();
+        void LoadLevel(vector<vector<char>> levelMap);
+        void ProcessInput(int key, const vector<vector<char>>& currentGrid);
+        Level CurrentLevelMap();
+        bool LevelComplete();
+        bool IsRunning();
+        void ChangeLevel();
+        void LevelRemoveKey();
+        void LevelRemoveCoin();
+        int GetScore();
+        int GetCurrentLevel();
+        int GetPlayerDirection();
+        bool HasStarted();
+        void StartGame();
+        vector<vector<char>> PrepareGrid(Level level);
+        HighScoreList highscoreList;
+    private:
+        //data members
+        Player player;
+        vector<Level> levels;
+        int currentLevel = 0;
+        bool started = false;
 };

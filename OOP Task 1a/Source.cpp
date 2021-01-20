@@ -24,14 +24,14 @@ int main()
     Texture2D doorOpenTile = LoadTexture("./assets/doorOpen.png");
     Texture2D playerFront = LoadTexture("./assets/YodaBack.png");
     Texture2D playerRight = LoadTexture("./assets/YodaRight.png");
-    Texture2D playerBack = LoadTexture("./assets/YodaFront.png"); //remind me to change the names
+    Texture2D playerBack = LoadTexture("./assets/YodaFront.png");
     Texture2D playerLeft = LoadTexture("./assets/YodaLeft.png");
     
 
     Game game;
-    int lives = game.player.GetLives();
+    int lives = game.GetPlayer().GetLives();
     int currentCol = 0;
-    vector<pair<string, int>> HighScores = move(game.highScoreList.GetHighScoreList());
+    vector<pair<string, int>> HighScores = move(game.highscoreList.GetHighScoreList());
     game.Setup();
     InitAudioDevice();              // Initialize audio device
 
@@ -41,8 +41,8 @@ int main()
     Sound deathSound = LoadSound("./assets/DeathNoise.mp3");
     Sound gameOverSound = LoadSound("./assets/gameoversound.mp3");
 
-    Sound footstepSound = LoadSound("./assets/footstep01.ogg");
-    Sound footstepAltSound = LoadSound("./assets/footstep08.ogg");
+    Sound footstepSound = LoadSound("./assets/footstepA.mp3");
+    Sound footstepAltSound = LoadSound("./assets/footstepB.mp3");
     Sound keyPickUpSound = LoadSound("./assets/keypickup.ogg");
 
     bool pause = false;
@@ -81,7 +81,7 @@ int main()
                 if (pause) PauseMusicStream(levelMusic);
                 else ResumeMusicStream(levelMusic);
             }
-            if (game.player.GetLives() < lives)
+            if (game.GetPlayer().GetLives() < lives)
             {
                 lives--;
                 PlaySound(deathSound);
@@ -137,7 +137,7 @@ int main()
                         DrawTextureRec(coinTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
                     case DOOR:   
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
-                        if (game.player.GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
+                        if (game.GetPlayer().GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         else { DrawTextureRec(doorOpenTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); } break; //this is a temp fix, i think it can be done better.
                     case SPIKE:  
                         DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED);
@@ -153,11 +153,11 @@ int main()
                    //DrawRectangleLines(x * cellSize, y * cellSize, cellSize, cellSize, DARKGRAY); Disabled it for now to test how textures will look.
                 }
             }
-            DrawText(FormatText("Lives = %i", game.player.GetLives()), 650, 50, 40, RED);
+            DrawText(FormatText("Lives = %i", game.GetPlayer().GetLives()), 650, 50, 40, RED);
             //can add heart sprites here if we want to.
             DrawText(FormatText("Score = %i", game.GetScore()), 650, 10, 40, GOLD);
             DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
-            DrawText(FormatText("Keys = %i", game.player.GetKeys()), 650, 130, 40, BLUE);
+            DrawText(FormatText("Keys = %i", game.GetPlayer().GetKeys()), 650, 130, 40, BLUE);
             DrawText(FormatText("HighScores:"), 650, 170, 40, BLACK);
             int i = 0;
             for (auto &Scores : HighScores)
@@ -170,7 +170,7 @@ int main()
             DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
         }
         EndDrawing();
-        while (!game.IsRunning() && game.player.GetLives() == 0)
+        while (!game.IsRunning() && game.GetPlayer().GetLives() == 0)
         {
             
             PlaySound(gameOverSound);
@@ -187,7 +187,7 @@ int main()
                 CloseWindow();
             }
         }
-        while (!game.IsRunning() && game.player.GetLives() > 0)
+        while (!game.IsRunning() && game.GetPlayer().GetLives() > 0)
         {
             ClearBackground(BLUE);
             StopMusicStream(gameOverMusic);
@@ -261,7 +261,7 @@ int main()
 
             if (IsKeyPressed(KEY_F))
             {
-                game.highScoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
+                game.highscoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
                 EndDrawing();
                 CloseWindow();
             }

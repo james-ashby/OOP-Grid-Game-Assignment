@@ -50,7 +50,7 @@ int main()
     while (!WindowShouldClose())
     {
         auto currentLevel = game.PrepareGrid(game.CurrentLevelMap());
-        while (!game.IsRunning())
+        while (!game.IsRunning() && !WindowShouldClose())
         {
             UpdateMusicStream(menuMusic);
             ClearBackground(SKYBLUE);
@@ -63,15 +63,14 @@ int main()
                 game.StartGame();
             }
         }
-        if (game.IsRunning())
+        if (game.IsRunning() && !WindowShouldClose())
         {
             ClearBackground(SKYBLUE);
             UpdateMusicStream(levelMusic);
             PlayMusicStream(levelMusic);
 
             if (IsKeyPressed(KEY_RIGHT)) { PlaySound(keyPickUpSound); game.ProcessInput(KEY_RIGHT, currentLevel); }
-            if (IsKeyPressed(KEY_LEFT)) { PlaySound(footstepSound); game.ProcessInput(KEY_LEFT, currentLevel);
-        }
+            if (IsKeyPressed(KEY_LEFT)) { PlaySound(footstepSound); game.ProcessInput(KEY_LEFT, currentLevel);}
             if (IsKeyPressed(KEY_UP)) { PlaySound(footstepAltSound); game.ProcessInput(KEY_UP, currentLevel); }
             if (IsKeyPressed(KEY_DOWN)) { PlaySound(footstepSound); game.ProcessInput(KEY_DOWN, currentLevel); }
             if (IsKeyPressed(KEY_P))
@@ -170,7 +169,7 @@ int main()
             DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
         }
         EndDrawing();
-        while (!game.IsRunning() && game.player.GetLives() == 0)
+        while (!game.IsRunning() && game.player.GetLives() == 0 && !WindowShouldClose())
         {
             
             PlaySound(gameOverSound);
@@ -187,7 +186,7 @@ int main()
                 CloseWindow();
             }
         }
-        while (!game.IsRunning() && game.player.GetLives() > 0)
+        while (!game.IsRunning() && game.player.GetLives() > 0 && !WindowShouldClose())
         {
             ClearBackground(BLUE);
             StopMusicStream(gameOverMusic);
@@ -257,13 +256,13 @@ int main()
             }
 
             DrawText(FormatText("%c,%c,%c,%c", col[0], col[1], col[2], col[3]), 300, 330, 40, BLACK);
-            DrawText(FormatText("Press F to Submit %i", game.GetScore()), 300, 370, 40, BLACK);
+            DrawText(FormatText("Press F to Submit Score:  %i", game.GetScore()), 300, 370, 40, BLACK);
 
             if (IsKeyPressed(KEY_F))
             {
                 game.highScoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
                 EndDrawing();
-                CloseWindow();
+
             }
 
             EndDrawing();

@@ -200,27 +200,23 @@ int main()
                 c = 65;
             }
 
+
             if (IsKeyPressed(KEY_DOWN))
             {
-                if (col[currentCol] == 64)
+                col[currentCol]--;
+                if (col[currentCol] < 65)
                 {
                     col[currentCol] = 90;
-                }
-                else
-                {
-                    col[currentCol]--;
                 }
             }
             else if (IsKeyPressed(KEY_UP))
             {
-                if (col[currentCol] == 91)
+                col[currentCol]++;
+                if (col[currentCol] > 90)
                 {
                     col[currentCol] = 65;
                 }
-                else
-                {
-                    col[currentCol]++;
-                }
+
             }
             else if (IsKeyPressed(KEY_LEFT))
             {
@@ -229,7 +225,7 @@ int main()
                 {
                     currentCol = 3;
                 }
-                
+
             }
             else if (IsKeyPressed(KEY_RIGHT))
             {
@@ -240,6 +236,8 @@ int main()
                 }
 
             }
+
+
             if (currentCol == 0)
             {
                 DrawText("_", 300, 335, 40, WHITE);
@@ -256,12 +254,15 @@ int main()
             {
                 DrawText("_", 420, 335, 40, WHITE);
             }
-            DrawText(FormatText("%c,%c,%c,%c", col[0], col[1], col[2], col[3]), 300, 330, 40, BLACK);
-            DrawText(FormatText("%i", game.GetScore()), 300, 370, 40, BLACK);
 
-            if (IsKeyPressed(KEY_ENTER))
+            DrawText(FormatText("%c,%c,%c,%c", col[0], col[1], col[2], col[3]), 300, 330, 40, BLACK);
+            DrawText(FormatText("Press F to Submit %i", game.GetScore()), 300, 370, 40, BLACK);
+
+            if (IsKeyPressed(KEY_F))
             {
                 game.highScoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
+                EndDrawing();
+                CloseWindow();
             }
 
             EndDrawing();

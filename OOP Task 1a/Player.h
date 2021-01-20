@@ -21,6 +21,7 @@ class Player
         int GetScore();
         int GetDirection();
         void RemoveLife();
+
         // mutators
         void Move(int key);
         bool CheckComplete();
@@ -43,7 +44,7 @@ class Player
         int  x, y;
         Score score;
         vector<vector<char>> currentGrid;
-        // supporting functions 
-        void UpdatePosition(int dx, int dy);
 
+        // supporting functions
+        void UpdatePosition(int dx, int dy);
 };

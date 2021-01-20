@@ -9,6 +9,8 @@ int main()
     SetWindowIcon(icon);
     SetTargetFPS(60);
 
+    //NICKY HIGHSCORE 338
+
     //lots of textures consider a diferent way to load? or something not sure if it's possible other than a sprite sheet.
     Texture2D floorTile = LoadTexture("./assets/floor.png");
     Texture2D wallTile = LoadTexture("./assets/wall.png");
@@ -100,31 +102,37 @@ int main()
 
                     switch (currentLevel[y][x])
                     {
-                    case FLOOR:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN);
+                    case FLOOR:  
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN);
                         DrawTextureRec(floorTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case WALL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY);
-                                 DrawTextureRec(wallTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case OCEAN:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY);
-                                  DrawTextureRec(waterTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case PLAYER: DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
+                    case WALL:   
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY);
+                        DrawTextureRec(wallTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                    case OCEAN:   
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, LIGHTGRAY);
+                        DrawTextureRec(waterTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                    case PLAYER: 
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
                         if (game.GetPlayerDirection() == 1) { DrawTextureRec(playerFront, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         else if (game.GetPlayerDirection() == 2) { DrawTextureRec(playerRight, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
                         else if (game.GetPlayerDirection() == 3) { DrawTextureRec(playerBack, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                        else { DrawTextureRec(playerLeft, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                        break;
-                    case HOLE:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLACK);
+                        else { DrawTextureRec(playerLeft, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); } break;
+                    case HOLE:   
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLACK);
                         DrawTextureRec(holeTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case KEY:    DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);
+                    case KEY:    
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, GOLD);
                         DrawTextureRec(keyTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case DOOR:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
-                        //this is a temp fix, i think it can be done better.
+                    case DOOR:   
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);
                         if (game.player.GetKeys() != game.GetCurrentLevel()) { DrawTextureRec(doorClosedTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                        else { DrawTextureRec(doorOpenTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); }
-                        break;
-                    case SPIKE:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED);
-                                 DrawTextureRec(spikeUp, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
-                    case SPIKEDOWN:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLUE); 
-                                     DrawTextureRec(spikeDown, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                        else { DrawTextureRec(doorOpenTile, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); } break; //this is a temp fix, i think it can be done better.
+                    case SPIKE:  
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED);
+                        DrawTextureRec(spikeUp, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
+                    case SPIKEDOWN:  
+                        DrawRectangle(xPosition, yPosition, cellSize, cellSize, BLUE);                                     
+                        DrawTextureRec(spikeDown, Rectangle{ 0 ,0 , cellSize, cellSize }, Vector2{ (float)xPosition, (float)yPosition }, RAYWHITE); break;
 
                     default:     assert(false);  // if this hits you probably forgot to add your new tile type :)
                     }

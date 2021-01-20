@@ -4,18 +4,24 @@
 
 int main()
 {
-    Image icon = LoadImage("./assets/yodaIcon.png");
+    // Pre-game initialisation
     InitWindow(940, 640, "BABA YADA");
+    Image icon = LoadImage("./assets/yodaIcon.png");
     SetWindowIcon(icon);
     SetTargetFPS(60);
+    Game game;
+    int lives = game.GetPlayer().GetLives();
+    int currentCol = 0;
+    vector<pair<string, int>> HighScores = move(game.highscoreList.GetHighScoreList());
+    game.Setup();
+    InitAudioDevice();
+
+    // Load game assets
     Font titleFont = LoadFontEx("./assets/mainMenu1.ttf", 32, 0, 250);
     Font subtitleFont = LoadFontEx("./assets/mainMenu2.ttf", 32, 0, 250);
     Image babaYadaImg = LoadImage("./assets/yodaSplash.png");
     ImageResize(&babaYadaImg, 300, 230);
     Texture2D babaYada = LoadTextureFromImage(babaYadaImg);
-    //NICKY HIGHSCORE 338
-
-    //lots of textures consider a diferent way to load? or something not sure if it's possible other than a sprite sheet.
     Texture2D floorTile = LoadTexture("./assets/floor.png");
     Texture2D wallTile = LoadTexture("./assets/wall.png");
     Texture2D waterTile = LoadTexture("./assets/water.png");
@@ -23,41 +29,32 @@ int main()
     Texture2D coinTile = LoadTexture("./assets/nonCopyrightSpaceMetal.png");
     Texture2D spikeUp = LoadTexture("./assets/spikeUp.png");
     Texture2D spikeDown = LoadTexture("./assets/spikeDown.png");
-    Texture2D holeTile = LoadTexture("./assets/hole.png"); //yes i did use the hole emoji
+    Texture2D holeTile = LoadTexture("./assets/hole.png"); 
     Texture2D doorClosedTile = LoadTexture("./assets/doorClosed.png");
     Texture2D doorOpenTile = LoadTexture("./assets/doorOpen.png");
     Texture2D playerFront = LoadTexture("./assets/YodaBack.png");
     Texture2D playerRight = LoadTexture("./assets/YodaRight.png");
     Texture2D playerBack = LoadTexture("./assets/YodaFront.png");
     Texture2D playerLeft = LoadTexture("./assets/YodaLeft.png");
-    
-
-    Game game;
-    int lives = game.GetPlayer().GetLives();
-    int currentCol = 0;
-    vector<pair<string, int>> HighScores = move(game.highscoreList.GetHighScoreList());
-    game.Setup();
-    InitAudioDevice();              // Initialize audio device
-
     Music menuMusic = LoadMusicStream("./assets/gamemusic.mp3");
     Music gameOverMusic = LoadMusicStream("./assets/gameoverMusic.mp3");
     Music levelMusic = LoadMusicStream("./assets/levelMusic.mp3");
     Sound deathSound = LoadSound("./assets/DeathNoise.mp3");
     Sound gameOverSound = LoadSound("./assets/gameoversound.mp3");
-
     Sound footstepSound = LoadSound("./assets/footstepA.mp3");
-    Sound footstepAltSound = LoadSound("./assets/footstepB.mp3"); //
+    Sound footstepAltSound = LoadSound("./assets/footstepB.mp3"); 
     Sound footstepAltSoundB = LoadSound("./assets/footstepC.mp3");
     Sound footstepAltSoundC = LoadSound("./assets/footstepD.mp3");
     Sound keyPickUpSound = LoadSound("./assets/keypickup.ogg");
 
-    bool pause = false;
-    PlayMusicStream(menuMusic);
+    //********* Game is running *********
+                   
     while (!WindowShouldClose())
     {
-        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap());
+        auto currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // 
         while (!game.IsRunning() && !WindowShouldClose())
         {
+            PlayMusicStream(menuMusic);
             UpdateMusicStream(menuMusic);
             ClearBackground(BROWN);
             DrawTexture(babaYada, 550, 340, WHITE);
@@ -84,13 +81,7 @@ int main()
         }
             if (IsKeyPressed(KEY_UP)) { PlaySound(footstepAltSoundB); game.ProcessInput(KEY_UP, currentLevel); }
             if (IsKeyPressed(KEY_DOWN)) { PlaySound(footstepAltSoundC); game.ProcessInput(KEY_DOWN, currentLevel); }
-            if (IsKeyPressed(KEY_P))
-            {
-                pause = !pause;
 
-                if (pause) PauseMusicStream(levelMusic);
-                else ResumeMusicStream(levelMusic);
-            }
             if (game.GetPlayer().GetLives() < lives)
             {
                 lives--;
@@ -167,16 +158,15 @@ int main()
             DrawText(FormatText("Score = %i", game.GetScore()), 650, 10, 40, GOLD);
             DrawText(FormatText("Level = %i", game.GetCurrentLevel()), 650, 90, 40, GREEN);
             DrawText(FormatText("Keys = %i", game.GetPlayer().GetKeys()), 650, 130, 40, BLUE);
-            DrawText(FormatText("HighScores:"), 650, 170, 40, BLACK);
+            DrawText(FormatText("HighScores:"), 650, 320, 40, BLACK);
             int i = 0;
             for (auto &Scores : HighScores)
             {
                 i++;
                 char a = 65;
-                int listPosition = 170 + (30 * (i + 1));
+                int listPosition = 320 + (30 * (i + 1));
                 DrawText(FormatText(": %s, %i", Scores.first.c_str(), Scores.second), 650, listPosition, 30, BLACK);
             }
-            DrawText("Press P\nto pause/unpause\nmusic ", 650, 400, 30, BLACK);
         }
         EndDrawing();
         while (!game.IsRunning() && game.GetPlayer().GetLives() == 0 && !WindowShouldClose())

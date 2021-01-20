@@ -269,7 +269,7 @@ int main()
             {
                 game.highScoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
                 EndDrawing();
-
+                CloseWindow();
             }
 
             EndDrawing();

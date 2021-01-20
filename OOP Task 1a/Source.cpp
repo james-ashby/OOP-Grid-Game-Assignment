@@ -93,7 +93,7 @@ int main()
             }
             currentLevel = game.PrepareGrid(game.CurrentLevelMap()); // Updates the level with any changes from player inputs (i.e spike toggles)
             game.LevelRemoveKey();  // These functions check the tile the player is no to remove either keys/coins when stepped on
-            game.LevelRemoveCoin(); //
+            game.LevelRemoveCoin(); 
 
             if (game.LevelComplete())
             {

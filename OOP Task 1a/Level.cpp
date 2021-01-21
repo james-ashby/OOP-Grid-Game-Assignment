@@ -50,6 +50,7 @@ bool Level::IsWaterAtPosition(int x, int y)
 
 void Level::AddTile(char tile, int x, int y)
 {
+    // Check the char of the map, add a the tile represented to the respective vector 
     switch (tile) {
     case WALL:
         walls.push_back(Wall(x, y));
@@ -82,7 +83,7 @@ void Level::RemoveKey(int x, int y)
 {
     for (int i = 0; i < keys.size(); i++)
     {
-        if (keys[i].GetX() == x && keys[i].GetY() == y)
+        if (keys[i].GetX() == x && keys[i].GetY() == y) 
         {
             keys.erase(keys.begin() + i);
         }

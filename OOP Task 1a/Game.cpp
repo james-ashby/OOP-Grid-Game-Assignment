@@ -12,8 +12,8 @@ void Game::Setup()
 
 void Game::ProcessInput(int key, const vector<vector<char>>& currentGrid)
 {
-    levels[currentLevel].ToggleSpikes(); // Better to do this with a timer
-    player.SetCurrentGrid(currentGrid);
+    levels[currentLevel].ToggleSpikes(); // Toggle whether the spikes are active or inactive for each player movement
+    player.SetCurrentGrid(currentGrid);  // Updates the players reference to the map, so they can detect the correct blocks
     player.Move(key);
 }
 
@@ -22,6 +22,7 @@ void Game::LoadLevel(vector<vector<char>> levelMap)
     vector<vector<char>> map = levelMap;
     Level newLevel;
 
+    // Adds tiles to the returned level based on the const map it receives
     for (int x = 0; x < SIZE; x++)
     {
         for (int y = 0; y < SIZE; y++)
@@ -84,7 +85,7 @@ vector<vector<char>> Game::PrepareGrid(Level level)
             {
                 line.push_back(WALL);
             }
-            else if (level.IsHoleAtPosition(row, col)) // TODO -- Refactor into one function that receives row,col,symbol and push_back(symbol)
+            else if (level.IsHoleAtPosition(row, col)) 
             {
                 line.push_back(HOLE);
             }
@@ -145,16 +146,14 @@ bool Game::LevelComplete()
 {
     if (player.CheckComplete())
     {
-        player.ResetCompleteFlag();
+        player.ResetCompleteFlag(); // Resets the complete variable for the player so that they do not have the next level completed
         return true;
     }
 }
 
 bool Game::IsRunning()
 {
-    // depending on your game you'll need to modify this to return false
-    // maybe it's when the player runs out of moves, maybe it's when they get caught, it's up to you!
-    if (player.GetLives() == 0)
+    if (player.GetLives() == 0) // If the player runs out of lives, the game stops running
     {
         return false;
     }
@@ -167,7 +166,7 @@ bool Game::IsRunning()
 
 void Game::ChangeLevel()
 {
-    if (currentLevel < 4)
+    if (currentLevel < 4) // Stops the game crashing by reaching level 6 (level cap is 5)
     {
         currentLevel++;
         player.MoveToSpawn();
@@ -179,11 +178,11 @@ void Game::ChangeLevel()
 }
 
 void Game::LevelRemoveKey() {
-    levels[currentLevel].RemoveKey(player.GetY(), player.GetX());
+    levels[currentLevel].RemoveKey(player.GetY(), player.GetX()); // If the player is standing on a key tile, remove the key from the level vector of keys
 }
 
 void Game::LevelRemoveCoin() {
-    levels[currentLevel].RemoveCoin(player.GetY(), player.GetX());
+    levels[currentLevel].RemoveCoin(player.GetY(), player.GetX()); // If the player is standing on a coin (non-descript metal) tile, remove the coin from the level vector of coins
 }
 int Game::GetScore()
 {

@@ -260,7 +260,7 @@ int main()
 
             DrawText(FormatText("%c,%c,%c,%c", col[0], col[1], col[2], col[3]), 300, 330, 40, BLACK);
             DrawText(FormatText("Press F to Save Score:  %i", game.GetScore()), 300, 370, 40, BLACK);
-            DrawText("Press ESC to Quit", 300, 390, 40, BLACK);
+            DrawText("Press ESC to Quit", 300, 410, 40, BLACK);
 
             if (IsKeyPressed(KEY_F))
             {

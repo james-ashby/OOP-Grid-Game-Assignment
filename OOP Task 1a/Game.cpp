@@ -9,12 +9,13 @@
 
 void Game::Setup()
 {
-    LoadLevel(LEVELMAP1);
-    LoadLevel(LEVELMAP2);
-    LoadLevel(LEVELMAP3);
-    LoadLevel(LEVELMAP4);
-    LoadLevel(LEVELMAP5);
-    //LoadLevel(LoadLevelFromFile());
+    //read in the levels from csv files
+    //levels can be created in the level editor i made in a spreadsheet
+    LoadLevel(LoadLevelFromFile("./assets/LEVEL2.csv"));
+    LoadLevel(LoadLevelFromFile("./assets/LEVEL1.csv"));
+    LoadLevel(LoadLevelFromFile("./assets/LEVEL3.csv"));
+    LoadLevel(LoadLevelFromFile("./assets/LEVEL4.csv"));
+    LoadLevel(LoadLevelFromFile("./assets/LEVEL5.csv"));
     highscoreList.GetHighScoreList();
 }
 
@@ -230,4 +231,30 @@ vector<pair<string,int>> Game::GetHighscoreList()
 void Game::AddToHighScoreList(string name, int score)
 {
     highscoreList.AddToHighScoreList(name, score);
+}
+
+vector<vector<char>> Game::LoadLevelFromFile(string level)
+{
+    string line = "";
+    ifstream input;
+    vector<char> lines = {};
+    vector<vector<char>> grid = {};
+    input.open(level);
+
+    while (getline(input, line))
+    {
+        for (char c : line) {
+            if (c != ',') {
+                lines.push_back(c);
+            }
+            if (lines.size() > 19) {
+                grid.push_back(lines);
+                lines.clear();
+            }
+        }
+    }
+
+    input.close();
+
+    return grid;
 }

@@ -22,6 +22,8 @@
 #define KEY_P     80
 
 
+//the level defines are no longer used but is still an option for creating levels.
+
 //20x20 map
 #define LEVELMAP1 {\
 {\

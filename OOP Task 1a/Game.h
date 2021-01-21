@@ -21,6 +21,7 @@ class Game
        //accessors
         Player GetPlayer();
         vector<pair<string, int>> GetHighscoreList();
+        vector<vector<char>> LoadLevelFromFile(string level);
        //mutators
         void AddToHighScoreList(string, int);
         void Setup();

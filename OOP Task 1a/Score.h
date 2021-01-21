@@ -1,9 +1,6 @@
 #pragma once
 class Score
 {
-private:
-    int score;
-    int keysHeld;
 public:
     Score(int initScore);
     int getScore();
@@ -12,6 +9,8 @@ public:
     bool IsNull();
     int getKeysHeld();
     void addKey();
-
+private:
+    int score;
+    int keysHeld;
 };
 

@@ -4,7 +4,7 @@
 Player::Player() : symbol(PLAYER), x(0), y(0), alive(true), escaped(false), dx(0), dy(0), score(100), lives(3), levelComplete(false), currentLevel(1)
 {
     MoveToSpawn();
-    direction = 3;
+    direction = 3; // Reset the player sprite direction facing downward
 }
 
 int Player::GetX()
@@ -68,30 +68,30 @@ void Player::Move(int key)
     // update player coordinates if move is possible
     if (((x + dx) >= 0) && ((x + dx) < SIZE) && ((y + dy) >= 0) && ((y + dy) < SIZE))
     {
-        int nextY = y + dy;  // Had to save the next values to stop vector errors
+        int nextY = y + dy;  
         int nextX = x + dx; 
 
         if (this->currentGrid[nextY][nextX] != WALL && this->currentGrid[nextY][nextX] != DOOR && this->currentGrid[nextY][nextX] != OCEAN) { // Update position if the next tile is not a wall, to avoid players walking through walls
-            UpdatePosition(dx, dy);                    // Only update position here to avoid double movement
+            UpdatePosition(dx, dy);                    // Only updates position if the next tile is a valid tile (not locked door/wall/water)
         }
 
-		if (this->currentGrid[nextY][nextX] == KEY)  // TODO -- Add key to player class (vector of keys -- reset on level change
+		if (this->currentGrid[nextY][nextX] == KEY)  
 		{
 			score.Add(100);
             score.addKey();
-            this->currentGrid[nextY][nextX] = FLOOR;
+            this->currentGrid[nextY][nextX] = FLOOR; // Set the key on the next tile to be a floor tile, to update the map when it is picked up
 		}
         if (this->currentGrid[nextY][nextX] == COIN)  
         {
             score.Add(50);
-            this->currentGrid[nextY][nextX] = FLOOR;
+            this->currentGrid[nextY][nextX] = FLOOR; // Set the coin on the next tile to be a floor tile, to update the map when it is picked up
         }
 		if (this->currentGrid[nextY][nextX] == HOLE || this->currentGrid[nextY][nextX] == SPIKEDOWN) // If the player moves onto a hole, remove a life and respawn them
 		{
 			RemoveLife();
 			MoveToSpawn();
 		}
-        if (this->currentGrid[nextY][nextX] == DOOR && this->GetKeys() == this->currentLevel) // Band-aid door fix for now, can refactor later if necessary
+        if (this->currentGrid[nextY][nextX] == DOOR && this->GetKeys() == this->currentLevel) // One key per level, therefore if the player amount of keys matches the level, allow them to complete the level
         {
            this->LevelCompleted();
         }

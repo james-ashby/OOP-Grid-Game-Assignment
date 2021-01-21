@@ -4,7 +4,6 @@
 #include <string>		
 #include <vector>
 #include "Player.h"
-#include "RandomNumberGenerator.h"
 #include "Level.h"
 #include "HighScoreList.h"
 
@@ -21,9 +20,9 @@ class Game
    public:
        //accessors
         Player GetPlayer();
-        HighScoreList GetHighscoreList();
-        vector<vector<char>> LoadLevelFromFile();
+        vector<pair<string, int>> GetHighscoreList();
        //mutators
+        void AddToHighScoreList(string, int);
         void Setup();
         void LoadLevel(vector<vector<char>> levelMap);
         void ProcessInput(int key, const vector<vector<char>>& currentGrid);
@@ -39,10 +38,9 @@ class Game
         bool HasStarted();
         void StartGame();
         vector<vector<char>> PrepareGrid(Level level);
-        HighScoreList highscoreList;
-
     private:
         //data members
+        HighScoreList highscoreList;
         Player player;
         vector<Level> levels;
         int currentLevel = 0;

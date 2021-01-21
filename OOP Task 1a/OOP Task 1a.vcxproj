@@ -144,7 +144,6 @@
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Spike.cpp" />
@@ -162,7 +161,6 @@
     <ClInclude Include="Key.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="Source.h" />
     <ClInclude Include="Spike.h" />
     <ClInclude Include="Tile.h" />

@@ -2,6 +2,17 @@
 
 HighScoreList::HighScoreList()
 {
+    ifhighScoreFile.open("HighScores.txt");
+    if (ifhighScoreFile.is_open())
+    {
+        while (getline(ifhighScoreFile, line))
+        {
+            name = (line.substr(0, 4));
+            score = stoi(line.substr(4, line.length()));
+            highScores.push_back(make_pair(name, score));
+        }
+        ifhighScoreFile.close();
+    }
 }
 
 void HighScoreList::quickSort(vector<pair<string, int>>& A, int p, int q)
@@ -36,27 +47,11 @@ int HighScoreList::partition(vector<pair<string, int>>& A, int p, int q)
 
 const vector<pair<string, int>>& HighScoreList::GetHighScoreList()
 {
-    
-    ifhighScoreFile.open("HighScores.txt");
-    if (ifhighScoreFile.is_open())
-    {
-        while (getline(ifhighScoreFile,line))
-        {
-            name = (line.substr(0, 4));
-            score = stoi(line.substr(4, line.length()));
-            highScores.push_back(make_pair(name, score));
-        }
-        ifhighScoreFile.close();
-    }
-    else
-    {
-
-    }
     quickSort(highScores, 0, highScores.size());
 
     for (int i = 0; i < 5; i++)
     {
-        shortList.push_back(make_pair(highScores[i].first, highScores[i].second));
+        shortList.push_back(make_pair(highScores[i].first, highScores[i].second)); // High score list is a limited length, unnecessary to pass full list to UI
     }
 
     return shortList;
@@ -70,11 +65,7 @@ void HighScoreList::AddToHighScoreList(string newName, int newScore)
     {
          ofhighScoreFile << "\n" << newName << newScore;
     }
-    else
-    {
-
-    }
-    quickSort(highScores, 0, highScores.size() - 1);
+    ofhighScoreFile.close();
 
 }
 

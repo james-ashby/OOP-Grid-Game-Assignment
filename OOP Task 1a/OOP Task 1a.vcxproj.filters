@@ -4,7 +4,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hole.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -22,7 +21,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Hole.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Wall.h" />

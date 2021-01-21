@@ -9,6 +9,11 @@ using namespace std;
 
 class HighScoreList
 {
+
+public:
+    HighScoreList();
+    const vector<pair<string, int>>& HighScoreList::GetHighScoreList();
+    void AddToHighScoreList(string name, int score);
 private:
     ifstream ifhighScoreFile;
     ofstream ofhighScoreFile;
@@ -21,9 +26,5 @@ private:
     int partition(vector<pair<string, int>>& A, int p, int q);
 
 
-public:
-    HighScoreList();
-    const vector<pair<string, int>>& HighScoreList::GetHighScoreList();
-    void AddToHighScoreList(string name, int score);
 };
 

@@ -51,7 +51,7 @@ const vector<pair<string, int>>& HighScoreList::GetHighScoreList()
 
     for (int i = 0; i < 5; i++)
     {
-        shortList.push_back(make_pair(highScores[i].first, highScores[i].second)); // high score list is only so long so shouldnt need to pass the full list
+        shortList.push_back(make_pair(highScores[i].first, highScores[i].second)); // High score list is a limited length, unnecessary to pass full list to UI
     }
 
     return shortList;

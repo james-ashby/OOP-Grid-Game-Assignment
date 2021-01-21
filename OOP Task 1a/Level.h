@@ -9,15 +9,7 @@
 #include <vector>
 class Level
 {
-private:
-    vector<Wall> walls;   
-    vector<Hole> holes;
-    vector<Key> keys;
-    vector<Coin> coins;
-    vector<Door> doors;
-    vector<Spike> spikes;
-    vector<Water> waters;
-    bool spikesActive;
+
 public:
     bool IsHoleAtPosition(int x, int y);
     bool IsKeyAtPosition(int x, int y);
@@ -32,6 +24,14 @@ public:
     vector<Spike> GetSpikes();
     void ToggleSpikes();
     bool SpikesActive();
-
+private:
+    vector<Wall> walls;
+    vector<Hole> holes;
+    vector<Key> keys;
+    vector<Coin> coins;
+    vector<Door> doors;
+    vector<Spike> spikes;
+    vector<Water> waters;
+    bool spikesActive;
 };
 

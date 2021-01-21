@@ -11,8 +11,8 @@ void Game::Setup()
 {
     //read in the levels from csv files
     //levels can be created in the level editor i made in a spreadsheet
-    LoadLevel(LoadLevelFromFile("./assets/LEVEL2.csv"));
     LoadLevel(LoadLevelFromFile("./assets/LEVEL1.csv"));
+    LoadLevel(LoadLevelFromFile("./assets/LEVEL2.csv"));
     LoadLevel(LoadLevelFromFile("./assets/LEVEL3.csv"));
     LoadLevel(LoadLevelFromFile("./assets/LEVEL4.csv"));
     LoadLevel(LoadLevelFromFile("./assets/LEVEL5.csv"));

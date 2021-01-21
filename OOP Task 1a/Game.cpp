@@ -1,5 +1,6 @@
 #include "Game.h"
 
+
 void Game::Setup()
 {
     LoadLevel(LEVELMAP1);
@@ -7,7 +8,6 @@ void Game::Setup()
     LoadLevel(LEVELMAP3);
     LoadLevel(LEVELMAP4);
     LoadLevel(LEVELMAP5);
-    highscoreList.GetHighScoreList();
 }
 
 void Game::ProcessInput(int key, const vector<vector<char>>& currentGrid)
@@ -213,4 +213,14 @@ void Game::StartGame()
 Player Game::GetPlayer() 
 {
     return this->player;
+}
+
+vector<pair<string,int>> Game::GetHighscoreList()
+{
+    return highscoreList.GetHighScoreList();
+}
+
+void Game::AddToHighScoreList(string name, int score)
+{
+    highscoreList.AddToHighScoreList(name, score);
 }

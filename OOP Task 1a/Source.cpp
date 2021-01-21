@@ -10,9 +10,9 @@ int main()
     SetWindowIcon(icon);
     SetTargetFPS(60);
     Game game;
+    vector<pair<string, int>> HighScores = move(game.GetHighscoreList());
     int lives = game.GetPlayer().GetLives();
     int currentCol = 0;
-    vector<pair<string, int>> HighScores = move(game.highscoreList.GetHighScoreList());
     game.Setup();
     InitAudioDevice();
 
@@ -261,7 +261,7 @@ int main()
 
             if (IsKeyPressed(KEY_F))
             {
-                game.highscoreList.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore());
+                game.AddToHighScoreList(string{ col[0], col[1], col[2], col[3] }, game.GetScore()); // not sure about the warning it is in range???
                 EndDrawing();
                 CloseWindow();
 

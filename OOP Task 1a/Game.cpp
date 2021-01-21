@@ -1,5 +1,12 @@
 #include "Game.h"
 
+#include <string>
+#include <fstream>
+#include <vector>
+#include <utility>
+#include <stdexcept> 
+#include <sstream> 
+
 void Game::Setup()
 {
     LoadLevel(LEVELMAP1);
@@ -7,6 +14,7 @@ void Game::Setup()
     LoadLevel(LEVELMAP3);
     LoadLevel(LEVELMAP4);
     LoadLevel(LEVELMAP5);
+    //LoadLevel(LoadLevelFromFile());
     highscoreList.GetHighScoreList();
 }
 
@@ -167,7 +175,7 @@ bool Game::IsRunning()
 
 void Game::ChangeLevel()
 {
-    if (currentLevel < 4)
+    if (currentLevel < 5)
     {
         currentLevel++;
         player.MoveToSpawn();
@@ -213,4 +221,45 @@ void Game::StartGame()
 Player Game::GetPlayer() 
 {
     return this->player;
+}
+
+vector<vector<char>> Game::LoadLevelFromFile()
+{
+    string line;
+    string name;
+    ifstream input;
+    vector<char> lines;
+    vector<vector<char>> grid;
+    input.open("LEVEL6.csv");
+
+    if (input.is_open())
+    {
+        while (getline(input, line))
+        {
+            name = (line.substr(0, line.length()));
+
+            for (char c : name) {
+                if (c != ',') {
+                    lines.push_back(c);
+                }
+                if (lines.size() > 19) {
+                    grid.push_back(lines);
+                    lines.clear();
+                }
+            }
+        }
+        input.close();
+    }
+
+    //for (int x = 0; x < 20; x++)
+    //{
+    //    for (int y = 0; y < 20; y++)
+    //    {
+    //        cout << grid[x][y];
+    //    }
+    //    cout << endl;
+    //}
+
+
+    return grid;
 }

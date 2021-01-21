@@ -8,6 +8,12 @@
 #include "Level.h"
 #include "HighScoreList.h"
 
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+#include <iterator>
+#include <iostream>
+
 using namespace std;
 
 class Game
@@ -16,6 +22,7 @@ class Game
        //accessors
         Player GetPlayer();
         HighScoreList GetHighscoreList();
+        vector<vector<char>> LoadLevelFromFile();
        //mutators
         void Setup();
         void LoadLevel(vector<vector<char>> levelMap);
@@ -33,6 +40,7 @@ class Game
         void StartGame();
         vector<vector<char>> PrepareGrid(Level level);
         HighScoreList highscoreList;
+
     private:
         //data members
         Player player;

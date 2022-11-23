@@ -4,4 +4,4 @@
 
 Object Oriented university project created by James Ashby, Nicky Faulding and Corey Sutcliffe.
 
-This was a Grid Based game assignment created using a C++ wrapper for Raylib.
+This was a Grid Based game assignment created using a C++ wrapper for [Raylib](https://www.raylib.com/).
